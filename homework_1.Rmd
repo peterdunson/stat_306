@@ -1,0 +1,218 @@
+---
+title: "homework_1_bayes"
+author: "Peter Dunson"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+Sec 1.10 Exercises 2, 5, 6, 9, 12, 16, 17, 21, 22, 23
+
+### Problem 2
+
+a) Classical
+
+b) Subjective
+
+c) Subjective
+
+d) Classical
+
+e) Frequency
+
+f) Frequency
+
+### Problem 5
+
+a) 7/30
+
+b) 9/30
+
+c) 1 flip
+
+
+### Problem 6
+
+
+a) 8/20
+
+b) 7/20
+
+c) Somewhat unusual, given that 23.0 only happens once out of 20.
+
+
+### Problem 9
+
+a)
+
+a - 1/5
+e - 1/5
+i - 1/5
+o - 1/5
+u - 1/5
+
+b) 
+
+a - .3
+e - .35
+i - .2
+o - .10
+u - .05
+
+
+c) No, some vowels, like e and a, occur much more than others, like u.
+
+d)
+
+a - 61/250 = 0.244
+e - 63/250 = 0.252
+i - 34/250 = 0.136
+o - 70/250 = 0.280
+u - 22/250 = 0.088
+
+
+
+### Problem 12
+
+a)
+
+$S = \{(H, H, H), (H, H, T), (H, T, T), (T, T, T), (T, T, H), (T, H, H), (H, T, H), (T, H, T)\}$
+
+b)
+
+$S = \{ (x, y, z) \mid x, y, z \in \{A, B, C\} \}$
+
+c) 
+
+$S = \{(x,y,z) \mid x \in \{X_1, X_2, X_3\}, y \in \{Y_1, Y_2\}, z \in \{Z_1, Z_2\}\}$
+
+d)
+
+$S = \{(X_1, X_2, X_3) \mid X_i \in \{\text{Lucky, Best Girl, Stripes, Solid, Jokester}\}, X_1 \neq X_2 \neq X_3 \}$
+
+e)
+
+$S = \{(X_1, X_2) \mid X_i \in \{0, 1, 2, \dots, 9 \} \}$
+
+f)
+
+f) $S = \{ (w, x, y, z) \mid w, x, y, z \in \{a, b, c, d\} \text{ and } w \neq x \neq y \neq z \}$
+
+g)
+
+I = make
+O = miss
+
+$S = \{(O), (I,O), (I, I) \}$
+
+
+### Problem 16
+
+a)
+
+Probably not... if this is a chess master I'd say for me:
+
+0 games: 99.9%
+1 game: .0099%
+2 games: .0001%
+
+
+b)
+
+No, the probability of a random car BEING a corvette is 10%, so red corvette would be less than 10% (unless all of the corvettes are red).
+
+c)
+
+No, the percentage who play both sports HAS to be less than the percentage that plays golf or tennis (whichever lower), so must be less than 20%.
+
+d)
+
+Yes, this is reasonable.
+
+
+### Problem 17
+
+a) any of them! equally likely to be any number of keys
+
+b) none of them are least likely
+
+c) 1/5 for each
+
+
+### Problem 21
+
+a) 
+
+(J, M, P), (J, P, M), (M, P, J), (M, J, P), (P, M, J), (P, J, M)
+
+b)
+
+P(M) = 1/3
+
+P(B) = 1/2
+
+c)
+
+(M, J, P)
+
+(M, P, J)
+
+$P(M \cap B) = 1/3$
+
+d)
+
+$P(\bar{B}) = 1 - P(B) = 1/2$
+
+e)
+
+$P(M \cup B) = 1/2$
+
+
+### Problem 22
+
+a)
+
+$P(F)=45/193$
+
+b)
+
+Yes, you can't be a freshman and a junior.
+
+c)
+
+$P(F \cup J) = 97/193$
+
+d)
+
+$P(F \cap M) = 25/193$
+
+e)
+
+\textit{Addition rule}
+
+$P(F \cup M) = 118/193$
+
+
+### Problem 23
+
+a)
+
+$S = A \cup \bar{A}$
+
+$A \cap \bar{A} = \varnothing$
+
+b)
+
+$P(S) = P(A \cup \bar{A}) = P(A) + P(\bar{A})$
+
+c)
+
+$P(S) = 1 = P(A) + P(\bar{A})$
+
+So $\dots$
+
+$P(\bar{A}) = 1 - P(A)$
+
+
+
+
+
