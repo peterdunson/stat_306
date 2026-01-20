@@ -1,13 +1,16 @@
 ---
-title: "homework_2"
-author: "Peter"
+title: "homework_2_bayes"
+author: "Peter Dunson"
 date: '`r Sys.Date()`'
 output: html_document
 ---
 
 
+Peter Dunson - Homework 2
+
 Sample Space Worksheet #6 (3 ways!) +
 Sec 2.8 Exercises # 3cd, 5, 7, 10, 13, 15, 19, Optional Extra Credit Exercise #4
+
 
 
 ### Sample Space Worksheet #6
@@ -16,39 +19,40 @@ An organization has n members, two members are chosen at random to serve on main
 
 a. Inclusion-Exclusion
 
-Take A to be the event in which Mr. is chosen and B Mrs. \\
+Take A to be the event in which Mr. is chosen and B Mrs. \
 
-We want to find $P(A \cup B)$, or $P(A) + P(B) - P(A \cap B)$. \\
+We want to find $P(A \cup B)$, or $P(A) + P(B) - P(A \cap B)$. \
 
-We have $\binom{n}{2}$ total ways to choose the board. There are $n-1$ ways to choose 2, INCLUDING Mr. Smith (n ways, but n-1 having already chosen Mr Smith). \\
+We have $\binom{n}{2}$ total ways to choose the board. There are $n-1$ ways to choose 2, INCLUDING Mr. Smith (n ways, but n-1 having already chosen Mr Smith). \
 
-So we have $P(A) = P(B) = \frac{n-1}{\binom{n}{2}}$, this simplifies to $\frac{2}{n}$. \\
+So we have $P(A) = P(B) = \frac{n-1}{\binom{n}{2}}$, this simplifies to $\frac{2}{n}$. \
 
-And $P(A \cap B) = \frac{1}{\binom{n}{2}}$. \\
+And $P(A \cap B) = \frac{1}{\binom{n}{2}}$. \
 
-If we solve for $P(A \cup B)$ using $P(A) + P(B) - P(A \cap B)$ we simplify to end up with $\frac{4n-6}{n(n-1)}$. \\
+If we solve for $P(A \cup B)$ using $P(A) + P(B) - P(A \cap B)$ we simplify to end up with $\frac{4n-6}{n(n-1)}$. \
 
-So $P(\text{at least one}) = \frac{4n-6}{n(n-1)}$. \\
+So $P(\text{at least one}) = \frac{4n-6}{n(n-1)}$. \
 
 
 b. Law of Equally Likely Outcomes 
 
-Similar to above, there are $\binom{n}{2}$ total ways to choose 2 people.  \\
+Similar to above, there are $\binom{n}{2}$ total ways to choose 2 people.  \
 
-There is $1$ way to choose both Smiths and $\binom{2}{1} \cdot (n-2)$ ways to choose one or the other. \\
+There is $1$ way to choose both Smiths and $\binom{2}{1} \cdot (n-2)$ ways to choose one or the other. \
 
-So $P(\text{at least one}) = \frac{2(n-2)}{\binom{n}{2}}$ which simplifies to $\frac{4n-6}{n(n-1)}$. \\
+So $P(\text{at least one}) = \frac{2(n-2)}{\binom{n}{2}}$ which simplifies to $\frac{4n-6}{n(n-1)}$. \
 
 
 c. Third Method (use complements)
 
-For the third method we look at P(No smiths). \\
+For the third method we look at P(No smiths). \
 
-$P(\text{no smiths}) = \frac{\binom{n-2}{2}}{\binom{n}{2}}$ \\
+$P(\text{no smiths}) = \frac{\binom{n-2}{2}}{\binom{n}{2}}$ \
 
-So $P(\text{At least one Smith}) = 1 - P(\text{no smiths}) = 1 - \frac{\binom{n-2}{2}}{\binom{n}{2}}$. \\
+So $P(\text{At least one Smith}) = 1 - P(\text{no smiths}) = 1 - \frac{\binom{n-2}{2}}{\binom{n}{2}}$. \
 
-And this, of course, simplifies to $\frac{4n-6}{n(n-1)}$. 
+And this simplifies to $\frac{4n-6}{n(n-1)}$. 
+
 
 
 ### 3cd. 
@@ -62,22 +66,23 @@ There are $6^3$ total outcomes, so we have $P(\text{all three same}) = \frac{6}{
 
 d.
 
-Lets thing about possibilities here for sums of 10. \\
+Lets thing about possibilities here for sums of 10. \
 
-We have any permutation of:\\
+We have any permutation of:\
 
-1,3,6\\
-1,4,5\\
-2,2,6\\
-2,4,4\\
-2,3,5\\
-3,3,4\\
+1,3,6\
+1,4,5\
+2,2,6\
+2,4,4\
+2,3,5\
+3,3,4\
 
-If we look at the individual cases and sum the permutations we get: \\
+If we look at the individual cases and sum the permutations we get: \
 
-$P(\sum 10) = \frac{3! \cdot 3! \cdot \frac{3!}{2!} \cdot \frac{3!}{2!} \cdot 3! \cdot \frac{3!}{2!}}{216} = \frac{1}{8}$. \\
+$P(\sum 10) = \frac{3! \cdot 3! \cdot \frac{3!}{2!} \cdot \frac{3!}{2!} \cdot 3! \cdot \frac{3!}{2!}}{216} = \frac{1}{8}$. \
 
 Since we have 216 total outcomes and we account for each permutation for each outcome that sums to 10.
+
 
 
 ### 5.
@@ -96,14 +101,14 @@ IF BALLS OF THE SAME COLOR ARE INDISTINGUISHABLE. (If not, there would be severa
 
 b. 
 
-We take $\frac{2}{5} \cdot \frac{1}{4}$, since there are 2 whites out of 5 originally, but after 1 is chosen, there is only 1 out of 4 remaining. \\
+We take $\frac{2}{5} \cdot \frac{1}{4}$, since there are 2 whites out of 5 originally, but after 1 is chosen, there is only 1 out of 4 remaining. \
 
 $P(\text{both white}) = \frac{1}{10}$
 
 
 c.
 
-This is just double the probability of both white, since $P(\text{both white}) = P(\text{both black})$ \\
+This is just double the probability of both white, since $P(\text{both white}) = P(\text{both black})$ \
 
 So $P(\text{same color}) = \frac{1}{5}$
 
@@ -127,9 +132,9 @@ So $P(\text{white second}) = \frac{2}{5}$.
 
 ### 7. 
 
-Suppose you choose three numbers from the set {1, 2, 3, 4, 5, 6, 7, 8} without replacement. \\
+Suppose you choose three numbers from the set {1, 2, 3, 4, 5, 6, 7, 8} without replacement. \
 
-I assume order doesn't matter. \\
+I assume order doesn't matter. \
 
 a.
 
@@ -141,7 +146,7 @@ $P(\text{2 even} = \binom{4}{2} \cdot \binom{4}{1} = \frac{24}{56}$
 
 c.
 
-Well, we could either have (1,2,7) or (1,3,6) or (1,4,5) or (2,3,5). There are 56 possible choices so: \\
+Well, we could either have (1,2,7) or (1,3,6) or (1,4,5) or (2,3,5). There are 56 possible choices so: \
 
 
 $P(\text{sum 10}) = \frac{4}{56}$
@@ -152,19 +157,19 @@ $P(\text{sum 10}) = \frac{4}{56}$
 
 ### 10.
 
-In a lottery game, you make a random guess at the winning three-digit number (each digit can be 0, 1, 2, 3, 4, 5, 6, 7, 8, 9). You win \$200 if your guess matches the winning number, \$20 if your guess matches in exactly two positions and \$2 if your guess matches in exactly one position. Find the probabilities of winning \$200, winning \$20, and winning \$2. \\
+In a lottery game, you make a random guess at the winning three-digit number (each digit can be 0, 1, 2, 3, 4, 5, 6, 7, 8, 9). You win \$200 if your guess matches the winning number, \$20 if your guess matches in exactly two positions and \$2 if your guess matches in exactly one position. Find the probabilities of winning \$200, winning \$20, and winning \$2. \
 
 
 200.
 
-There's exactly 1 right choice of the 1000 possible numbers. \\
+There's exactly 1 right choice of the 1000 possible numbers. \
 
 $P(\$200) = \frac{1}{1000}$
 
 
 20. 
 
-We choose which digits are correct, then the remaining digit has to be wrong so there are 9 choices for that. \\
+We choose which digits are correct, then the remaining digit has to be wrong so there are 9 choices for that. \
 
 $P(\$20) = \frac{\binom{3}{2} \cdot 9}{1000} = \frac{27}{1000}$ 
 
@@ -173,6 +178,7 @@ $P(\$20) = \frac{\binom{3}{2} \cdot 9}{1000} = \frac{27}{1000}$
 We choose which digit is correct, then there are $9^2$ possibilities for the remaining two spots.
 
 $P(\$2) = \frac{\binom{3}{2} \cdot 9 \cdot 9}{1000} = \frac{243}{1000}$
+
 
 
 ### 13.
@@ -184,23 +190,84 @@ Find the probability the arrangement starts and ends with “s”.
 
 a. 
 
-$P(\text{stats}) = \frac{5!}{2!2!} = \frac{1}{30}$
+We have 30 total possible outcomes, if we account for indistinguishable letters. \
+
+$P(\text{stats}) = \frac{1}{30}$
 
 
 b. 
 
-$P(\text{starts and ends with s}) = $
+We account for the middle letters being permuted (3 possible ways): \
+
+$P(\text{starts and ends with s}) = \frac{\frac{3!}{2!}}{30} = \frac{1}{10}$
+
+
 
 
 ### 15.
 
+The Minnesota State Lottery has a game called Daily 3. A three digit number is chosen randomly from the set {000, 001, … , 999} and you win by guessing correctly certain characteristics of this three digit number. The lottery website lists the following possible plays such as First Digit, Front Pair, etc. Find the probability of winning for each play. \
+
+First Digit: Pick one number. To win, match the first number drawn. \
+
+$P(\text{first digit}) = \frac{1}{10}$
+
+Front Pair: Pick 2 numbers. To win, match the first 2 numbers drawn in exact order.\
+
+$P(\text{front pair}) = \frac{1}{100}$
+
+Straight: Pick 3 numbers. To win, match all 3 numbers drawn in exact order. \
+
+$P(\text{straight}) = \frac{1}{1000}$
+
+3-Way Box: Pick 3 numbers, 2 that are the same. To win, match all three numbers drawn in any order. \
+
+$P(\text{3-Way Box}) = \frac{\frac{3!}{2!}}{1000} = \frac{3}{1000}$
+
+6-Way Box: Pick 3 different numbers. To win, match all 3 numbers drawn in any order. \
+
+$P(\text{6-Way Box}) = \frac{3!}{1000} = \frac{6}{1000}$
+
 
 ### 19.
+
+Find the number of ways and the corresponding probabilities of getting all of the following patterns in Yahtzee. Here are some hints for the different patterns. \
+
+
+Four of a kind: The pattern here is {x, x, x, x, y}, where x is the number that appears four times and y is the number that appears once. \
+
+$P(\text{Four of a kind}) = \frac{\frac{5!}{4!}}{7776} = \frac{150}{7776}$
+
+
+Small straight: This roll will either include the numbers 1, 2, 3, 4, the numbers 2, 3, 4, 5, or the numbers 3, 4, 5, 6. If the numbers 1, 2, 3, 4 are the small straight, then the remaining number can not be 5 (otherwise it would be a large straight). \
+
+$P(\text{Small straight}) = \frac{4 \cdot \frac{5!}{2!} + 5! + 2 \cdot 4 \cdot \frac{5!}{2!}}{7776} = \frac{840}{7776}$
+
+Full house: The pattern here is {x, x, x, y, y}, where x is the number that appears three times and y is the number that appears twice. \
+
+$P(\text{Full house}) = \frac{\frac{5!}{3!2!}}{7776} = \frac{300}{7776}$
+
+Three of a kind: The pattern here is {x, x, x, y, z}, where x is the number that appears three times, and y and z are the numbers that appear only once. \
+
+$P(\text{Three of a kind}) = \frac{6 \cdot \binom{5}{2} \cdot \frac{5!}{3!}}{7776} = \frac{1200}{7776}$
+
+One pair: The pattern here is {x, x, w, y z}, where x is the number that appears two times, and w, y and z are the numbers that appear only once. \
+
+$P(\text{One pair}) = \frac{6 \cdot \binom{5}{3} \cdot \frac{5!}{2!}}{7776} = \frac{3600}{7776}$
+
+Nothing: This is the most difficult number to count directly. Once the number of each of the remaining patterns is found, then the number of “nothings” can be found by subtracting the total number of other patterns from the total number of rolls (7776). \
+
+$P(\text{Nothing}) = \frac{7776 - (150 + 300 + 1200 + 3600 + 840)}{7776} = \frac{1686}{7776}$
+
 
 
 ### Optional Extra Credit Exercise #4
 
+When you order Waffle House’s world famous hash browns, you can order them scattered (on the grill), smothered (with onions), chunked (with ham), topped (with chili), diced (with tomatoes), and peppered (with peppers). How many ways can you order 5 hash browns at Waffle House? \
 
+This is a combinations with repition problem, so we use the relevant formula: \
+
+$\binom{64+5-1}{5} = 10424128$ \
 
 
 
