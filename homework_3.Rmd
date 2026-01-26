@@ -18,20 +18,29 @@ Classical
 
 a.
 
-There are $\binom{9}{3}$ total ways of choosing 3 balls.
+There are $\binom{9}{3}$ total ways of choosing 3 balls. \
 
-$P(F_1) = \frac{\binom{4}{1} \cdot \binom{5}{2}}{\binom{9}{3}}$
+$P(F_1) = \frac{\binom{4}{1} \cdot \binom{5}{2}}{\binom{9}{3}} = 0.476$
 
-$P(B_1) = \frac{\binom{3}{1} \cdot \binom{6}{2}}{\binom{9}{3}}$
+$P(B_1) = \frac{\binom{3}{1} \cdot \binom{6}{2}}{\binom{9}{3}} = 0.536$
 
 b.
 
+$P(F_1 | B_1) = \frac{\binom{4}{1} \cdot \binom{3}{1} \cdot \binom{2}{1} / \binom{9}{3}}{\binom{3}{1} \cdot \binom{6}{2} / \binom{9}{3}} = 0.533$
+
 c.
+
+$P(B_1 | F_1) = \frac{\binom{4}{1} \cdot \binom{3}{1} \cdot \binom{2}{1} / \binom{9}{3}}{\binom{4}{1} \cdot \binom{5}{2} / \binom{9}{3}} = 0.6$
 
 d.
 
+If $F_1$ and $B_1$ are independent, then $P(B_1) \cdot P(F_1) = P(B_1 \cap F_1)$.
 
-Frequency
+But, $.476 \cdot .536 = 0.255136 \neq P(B_1 \cap F_1) = 0.286$.
+
+
+
+Frequency \
 
 a. 
 
