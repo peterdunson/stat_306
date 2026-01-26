@@ -1,0 +1,96 @@
+---
+title: "homework_3"
+author: "Peter"
+date: '`r Sys.Date()`'
+output: html_document
+---
+
+
+
+Sec 3.8 Exercises # 5, 6, 8, 12, 14, 17, 18, 23, 28, 30, Optional Extra Credit King's Gold and Silver Chest Problem
+
+** for problems 5 and 8, find the requested probabilities using the classical view of probability in addition to the frequency view
+
+
+### Problem 5
+
+Classical
+
+a.
+
+There are $\binom{9}{3}$ total ways of choosing 3 balls.
+
+$P(F_1) = \frac{\binom{4}{1} \cdot \binom{5}{2}}{\binom{9}{3}}$
+
+$P(B_1) = \frac{\binom{3}{1} \cdot \binom{6}{2}}{\binom{9}{3}}$
+
+b.
+
+c.
+
+d.
+
+
+Frequency
+
+a. 
+
+$P(F_1) = \frac{416}{1000} = 0.416$
+
+$P(B_1) = \frac{444}{1000} = 0.444$
+
+b. 
+
+$P(F_1 | B_1) = \frac{198}{444} = 0.4459459$
+
+c. 
+
+$P(B_1 | F_1) = \frac{198}{416} = 0.4759615$
+
+d.
+
+If $F_1$ and $B_1$ are independent, then $P(B_1) \cdot P(F_1) = P(B_1 \cap F_1)$.
+
+But, $0.416 * 0.444 = 0.184704 \neq P(B_1 \cap F_1) = 0.198$
+
+
+
+
+
+
+### Problem 6
+
+
+### Problem 8
+
+Classical
+
+Frequency
+
+### Problem 12
+
+
+### Problem 14
+
+
+### Problem 17
+
+
+### Problem 18
+
+
+### Problem 23
+
+
+### Problem 28
+
+
+### Problem 30
+
+
+### Optional Extra Credit King's Gold and Silver Chest Problem
+
+
+
+
+
