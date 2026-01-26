@@ -244,9 +244,27 @@ $P(F | R_1) = \frac{P(R_1 | F) \cdot P(F)}{P(R_1)} = \frac{0.15}{0.1833} = 0.818
 
 
 
-
-
 ### Problem 30
+
+a.
+
+$P(S) = 0.7$
+
+$P(T) = 0.3$
+
+$P(D | S) = 0.4$
+
+$P(D | T) = 0.8$
+
+
+b.
+
+$P(D) = P(D | S) \cdot P(S) + P(D | T) \cdot P(T) = 0.40 \cdot 0.70 + 0.80 \cdot 0.30 = 0.52$
+
+c.
+
+$P(S | D) = \frac{P(D | S) \cdot P(S)}{P(D)} = \frac{0.40 \cdot 0.70}{0.52} = 0.538$
+
 
 
 ### Optional Extra Credit King's Gold and Silver Chest Problem
