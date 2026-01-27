@@ -267,8 +267,30 @@ $P(S | D) = \frac{P(D | S) \cdot P(S)}{P(D)} = \frac{0.40 \cdot 0.70}{0.52} = 0.
 
 
 
+
+
+
 ### Optional Extra Credit King's Gold and Silver Chest Problem
 
+
+Strategy #1: Draw one coin from each chest \
+
+$P(\text{Free}) = \theta_g \cdot \theta_s + (1-\theta_g)(1-\theta_s) + \frac{1}{2}[\theta_g(1-\theta_s) + (1-\theta_g)\theta_s]$
+
+$P_1 = 1 - \frac{1}{2}(\theta_g + \theta_s) + \theta_g\theta_s$
+
+
+Strategy #2: Draw two coins, with replacement, from one chest
+
+$P(\text{Free} | \text{chose } G) = \theta_g^2 + \frac{1}{2} \cdot 2\theta_g(1-\theta_g) = \theta_g$
+
+$P(\text{Free} | \text{chose } S) = \theta_s^2 + \frac{1}{2} \cdot 2\theta_s(1-\theta_s) = \theta_s$
+
+$P_2 = \frac{\theta_g + \theta_s}{2}$
+
+$P_1 - P_2 = (1-\theta_g)(1-\theta_s) > 0$
+
+Strategy #1 is better.
 
 
 
