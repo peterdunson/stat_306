@@ -1,0 +1,40 @@
+---
+title: "homework_4"
+author: "Peter"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+
+Sec 4.6 Exercises # 3, 5, 6, 9, 12, 15, 18, 23, 29
+
+### Problem 3
+
+
+### Problem 5
+
+
+### Problem 6
+
+
+### Problem 9
+
+
+### Problem 12
+
+
+### Problem 15
+
+
+### Problem 18
+
+
+### Problem 23
+
+
+### Problem 29
+
+
+
+
+

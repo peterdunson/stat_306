@@ -292,6 +292,8 @@ $P_1 - P_2 = (1-\theta_g)(1-\theta_s) > 0$
 
 Strategy #1 is better.
 
-
+lobster_data <- c(78, 66, 65, 63, 60, 60, 58, 56, 52, 50)
+n <- length(lobster_data)
+var(lobster_data)
 
 
