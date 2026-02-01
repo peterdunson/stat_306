@@ -10,14 +10,151 @@ Sec 4.6 Exercises # 3, 5, 6, 9, 12, 15, 18, 23, 29
 
 ### Problem 3
 
+a. 
+
+$$
+P(X=x) = \newline
+
+X=1: \frac{2}{32} \newline
+X=2: \frac{8}{32} \newline
+X=3: \frac{12}{32} \newline
+X=4: \frac{8}{32} \newline
+X=5: \frac{2}{32} \newline
+$$
+
+b.
+
+```{r}
+x <- 1:5
+px <- c(2/32, 8/32, 12/32, 8/32, 2/32)
+barplot(px, names.arg = x, xlab = "X", ylab = "P(X = x)")
+```
+
+c.
+The most likely number of runs is the mode, which is $X=3$. \
+
+d.
+
+$P(X \leq 2) = P(X=1) + P(X=2) = \frac{10}{32}$.
+
+
 
 ### Problem 5
+
+a.
+
+$$
+P(X=x) = \newline
+
+X=1: \frac{1}{6} \newline
+X=2: \frac{1}{6} \newline
+X=3: \frac{1}{6} \newline
+X=4: \frac{1}{4} \newline
+X=5: \frac{1}{4} \newline
+$$
+
+b.
+
+$P(X \geq 2) = 1 - P(X=1) = 1 - \frac{1}{6}=\frac{5}{6}$
+
+c.
+
+$\mu = \sum x \cdot P(X=x) = \frac{13}{4} = 3.25$
+
+$E[X^2] = \frac{14}{6} + \frac{41}{4} = \frac{151}{12}$
+
+$\sigma^2 = \frac{151}{12} - 3.25^2 = 2.020833$
+
+$\sigma = 1.42156$
 
 
 ### Problem 6
 
+a.
+
+```{r}
+x <- 4:24
+px <- c(.001,.003,.008,.016,.027,.044,.062,.080,.097,.108,.113,.108,.096,.080,.062,.043,.027,.015,.008,.003,.001)
+
+y <- seq(4, 24, by = 2)
+py <- c(.028,.056,.083,.111,.139,.167,.139,.111,.083,.056,.028)
+
+mu_x <- sum(x * px)
+sd_x <- sqrt(sum(x^2 * px) - mu_x^2)
+
+mu_y <- sum(y * py)
+sd_y <- sqrt(sum(y^2 * py) - mu_y^2)
+
+cat("X: mean =", mu_x, ", sd =", sd_x, "\n")
+cat("Y: mean =", mu_y, ", sd =", sd_y, "\n")
+```
+
+$\mu_X = 14.014$
+$\sigma_X = 3.371617$
+
+$\mu_Y = 14.014$
+$\sigma_Y = 4.817863$
+
+
+b.
+
+```{r}
+plot(x, px, type = "h", lwd = 2, col = "blue", xlab = "Value", ylab = "Probability")
+points(y + 0.2, py, type = "h", lwd = 2, col = "red")
+legend("topright", legend = c("X", "Y"), col = c("blue", "red"), lwd = 2)
+```
+
+
+c.
+
+They are symmetric, having the same mean, though Y has a larger standard deviation since it only takes even values. \
+The means match, but doubling increases variability too much and makes odd totals impossible. Four independent dice cancel out extremes better, giving a tighter distribution.
+
 
 ### Problem 9
+
+a.
+
+$$
+P(Y=y) = \newline
+
+Y=-4: \frac{1}{16} \newline
+Y=-2: \frac{4}{16} \newline
+Y=0: \frac{6}{16} \newline
+Y=2: \frac{4}{16} \newline
+Y=4: \frac{1}{16} \newline
+
+$$
+
+b. 
+
+$P(|Y| \geq 2) = P(Y = -4) + P(Y = -2) + P(Y = 2) + P(Y = 4) = \frac{10}{16}$
+
+c.
+
+$$
+P(Y=y) = \newline
+
+Y=-4: (0.5)(0.3)(0.3)(0.3) = 0.0135 \newline
+Y=-2: (0.0315)+(0.0315)+(0.0525)+(0.0525) = 0.168 \newline 
+Y=0: (0.0735)+(0.1225)+(0.1225)+(0.1225)+(0.1225)+(0.0735)= 0.637 \newline
+Y=2: (0.0315)+(0.0315)+(0.0525)+(0.0525) = 0.168 \newline
+Y=4: (0.5)(0.3)(0.3)(0.3) = 0.0135 \newline
+
+$$
+
+
+d.
+
+
+$\mu_a = 0$
+$\sigma_a = \sqrt{16(\frac{1}{16}) + 4(\frac{4}{16}) + 4(\frac{4}{16}) + 16(\frac{1}{16})} = 2$
+
+$\mu_c = 0$
+$\sigma_c = \sqrt{16(0.0135) + 4(0.168) + 4(0.168) + 16(0.0135)} = 1.333$
+
+Both distributions have the same mean of 0, but the gravitational pull reduces the standard deviation from 2 to 1.33, so the walker stays much closer to home on average.
+
 
 
 ### Problem 12
