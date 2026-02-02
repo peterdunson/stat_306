@@ -287,6 +287,28 @@ dnbinom(5-3, 3, 0.6)
 
 ### Problem 29
 
+a.
+
+Expectation of a geometric is $\frac{1}{p}$, so $E[X_2] = \frac{4}{3}$. \
+
+b.
+
+Similarly, $E[X_3] = \frac{4}{2} = 2$. \ 
+ 
+c.
+
+Once again, $E[X_4] = \frac{4}{1} = 4$. \
+
+d.
+
+For the complete set of 4 posters we take 1, the number to find one poster (of course) and add the expectations for 2, 3, 4. \
+
+$1 + \frac{4}{3} + 2 + 4 = 8.3333$
+
+So, on average, you would have to buy around 8.333 boxes to get all 4 posters. 
+
+
+
 
 
 
