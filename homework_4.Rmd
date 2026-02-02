@@ -159,11 +159,96 @@ Both distributions have the same mean of 0, but the gravitational pull reduces t
 
 ### Problem 12
 
+a.
+
+$E[S] = k \cdot \mu = 35$
+$SD[S] = \sqrt{k} \cdot \sigma = \sqrt{10} \cdot 1.71 = 5.407495$
+
+
+b.
+
+For a single spin X:
+$\mu = (1 \cdot 0.5) + (2 \cdot 0.25) + (3 \cdot 0.25) = 1.75$
+$\sigma = \sqrt{(1^2 \cdot 0.5 + 2^2 \cdot 0.25 + 3^2 \cdot 0.25) - 1.75^2} = \sqrt{0.6875}$
+
+$E[S] = k \cdot \mu = 5 \cdot 1.75 = 8.75$
+$SD[S] = \sqrt{k} \cdot \sigma = \sqrt{5} \cdot \sqrt{0.6875} = 1.85405$
+
+
 
 ### Problem 15
 
+a.
+
+4 matches: ABCD
+3 matches: $\varnothing$, must be 4 if 3 have correct hat.
+2 matches: ABDC, ACBD, ADCB, BACD, CBAD, DBCA
+1 match: ACDB, ADBC, BCDA, CDBA, DABC, DCBA, BDAC, CADB
+0 matches: BADC, BCDA, CDAB, CDBA, DABC, DCAB, DCBA, BDAC, CADB
+
+$$
+P(X=x) = \newline
+
+x = 0: \frac{9}{24} \newline
+x = 1: \frac{8}{24} \newline
+x = 2: \frac{6}{24} \newline
+x = 3: \frac{0}{24} \newline
+x = 4: \frac{1}{24} \newline
+$$
+
+
+b.
+
+$P(X=0) = \frac{9}{24}$
+
+c.
+
+$E[X] = 0 + 1(\frac{8}{24}) + 2(\frac{6}{24}) + 0 + 4(\frac{1}{24}) = 1$
+
+
 
 ### Problem 18
+
+$n = 10$
+$p = 0.8$
+
+a.
+
+$E[X] = n \cdot p = 8$
+
+8 shots. \
+
+b.
+
+$P(X \ge 8) = P(X = 10) + P(X = 9) + P(X = 8)$
+
+$P(X = 10) = \binom{10}{10} (0.8)^{10} (0.2)^0 = 0.1074$
+
+$P(X = 9) = \binom{10}{9} (0.8)^9 (0.2)^1 = 0.2684$
+
+$P(X = 8) = \binom{10}{8} (0.8)^8 (0.2)^2 = 0.3020$
+
+$P(X \ge 8) = 0.6777995$
+
+
+TO CHECK: \
+```{r}
+1 - pbinom(7, 10, 0.8) #we use 7 instead of 8 since we are looking for \ge 8, not >8.
+```
+
+
+c.
+
+We could get $P(X=6)$ and $P(X=7)$ by doing the exact same thing as above, or we can use pbinom in R: \
+
+
+```{r}
+1 - pbinom(5, 10, 0.8)
+```
+
+$P(X > 5) = 0.9672065$
+
+
 
 
 ### Problem 23
