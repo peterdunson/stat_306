@@ -6,7 +6,7 @@ output: html_document
 ---
 
 
-Sec 4.6 Exercises # 3, 5, 6, 9, 12, 15, 18, 23, 29
+Sec 4.6 Exercises # 3, 5, 6, 9, 12, 15, 18, 23, 29 \
 
 ### Problem 3
 
@@ -108,7 +108,7 @@ legend("topright", legend = c("X", "Y"), col = c("blue", "red"), lwd = 2)
 c.
 
 They are symmetric, having the same mean, though Y has a larger standard deviation since it only takes even values. \
-The means match, but doubling increases variability too much and makes odd totals impossible. Four independent dice cancel out extremes better, giving a tighter distribution.
+The means match, but doubling increases variability too much and makes odd totals impossible. Four independent dice cancel out extremes better, giving a tighter distribution. \
 
 
 ### Problem 9
@@ -153,7 +153,7 @@ $\sigma_a = \sqrt{16(\frac{1}{16}) + 4(\frac{4}{16}) + 4(\frac{4}{16}) + 16(\fra
 $\mu_c = 0$
 $\sigma_c = \sqrt{16(0.0135) + 4(0.168) + 4(0.168) + 16(0.0135)} = 1.333$
 
-Both distributions have the same mean of 0, but the gravitational pull reduces the standard deviation from 2 to 1.33, so the walker stays much closer to home on average.
+Both distributions have the same mean of 0, but the gravitational pull reduces the standard deviation from 2 to 1.33, so the walker stays much closer to home on average. \
 
 
 
@@ -293,7 +293,7 @@ Expectation of a geometric is $\frac{1}{p}$, so $E[X_2] = \frac{4}{3}$. \
 
 b.
 
-Similarly, $E[X_3] = \frac{4}{2} = 2$. \ 
+Similarly, $E[X_3] = \frac{4}{2} = 2$. \
  
 c.
 
@@ -305,7 +305,7 @@ For the complete set of 4 posters we take 1, the number to find one poster (of c
 
 $1 + \frac{4}{3} + 2 + 4 = 8.3333$
 
-So, on average, you would have to buy around 8.333 boxes to get all 4 posters. 
+So, on average, you would have to buy around 8.333 boxes to get all 4 posters.  \
 
 
 
