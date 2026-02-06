@@ -98,7 +98,7 @@ U <- runif(n,0,1)
 # U through the transformation
 # X = F^(-1)(U)
 
-X <- ?
+X <- 1 - sqrt(1-U)
    
    cable_data <- data.frame(U,X)
 
@@ -133,6 +133,10 @@ ggplot(cable_data, aes(x=X)) +
 
 
 sqrt(17.55429)
+
+sqrt(5)
+
+(3/128) * sqrt(5)
 
 
 
