@@ -5,8 +5,309 @@ date: "`r Sys.Date()`"
 output: html_document
 ---
 
-Sec 5.9 Exercises # 3,6,8,10,13,18,20**,22
-** for problem 20, use both exact binomial calculations and normal approximation
+Sec 5.9 Exercises # 3,6,8,10,13,18,20**,22 \ 
+** for problem 20, use both exact binomial calculations and normal approximation \
+
+
+### Problem 3
+
+a.
+
+```{r}
+t <- seq(0, 10, length.out = 300)
+f <- 6 * t * (10 - t) / 1000
+plot(t, f, type = "l", lwd = 2, col = "blue",
+     xlab = "t (minutes)", ylab = "f(t)",
+     main = "Density of Median Waiting Time")
+```
+
+
+b. 
+
+$$P(5<T<7) = \int_{5}^{7} \frac{6t(10-t)}{1000} \, dt = \frac{6}{1000} \cdot \left[5t^2 - \frac{t^3}{3}\right]_5^7 = \frac{6}{1000} \cdot \frac{142}{3} = 0.284$$
+
+c. 
+
+$$F(T) = \int_{0}^{t} \frac{6x(10-x)}{1000} \, dx = \frac{6}{1000} \cdot \left[5x^2 - \frac{x^3}{3}\right]_0^t = \frac{t^2(15-t)}{500}$$
+
+$$
+F(t) = \begin{cases}
+0 & t \leq 0 \\
+\frac{t^2(15-t)}{500} & 0 < t < 10 \\
+1 & t \geq 10
+\end{cases} 
+$$
+
+d.
+
+$$P(T>6) = 1 - F(6) = 1 - \frac{324}{500} = 0.352$$
+
+e. 
+
+$$\frac{t^2(15-t)}{500} = 0.75 \Rightarrow t^2(15-t) = 375 \Rightarrow t^3 - 15t^2 - 375 = 0$$
+
+Using R to solve: \
+```{r}
+uniroot(function(t) t^3 - 15*t^2 + 375, c(0,10))
+```
+
+$t \approx 6.736455$
+
+
+### Problem 6
+
+a.
+```{r}
+x <- seq(0, 100, length.out = 300)
+f <- x / 5000
+plot(x, f, type = "l", lwd = 2, col = "blue",
+     xlab = "x (grade)", ylab = "f(x)",
+     main = "Density of Math Test Grades")
+```
+
+b.
+$$E(X) = \int_{0}^{100} x \cdot \frac{x}{5000} \, dx = \frac{1}{5000} \cdot \left[\frac{x^3}{3}\right]_0^{100} = \frac{1{,}000{,}000}{15{,}000} = \frac{200}{3} = 66 \frac{2}{3}$$.
+
+c.
+$$P(X \geq 90) = \int_{90}^{100} \frac{x}{5000} \, dx = \frac{1}{5000} \cdot \left[\frac{x^2}{2}\right]_{90}^{100} = \frac{10000 - 8100}{10000} = \frac{1900}{10000} = 0.19$$
+
+d.
+$$P(70 < X < 80) = \int_{70}^{80} \frac{x}{5000} \, dx = \frac{1}{5000} \cdot \left[\frac{x^2}{2}\right]_{70}^{80} = \frac{6400 - 4900}{10000} = \frac{1500}{10000} = 0.15$$
+
+e.
+This test is harder. The density increases linearly, so low grades are more common than high ones. With a mean of only 66.67 and just 19% scoring 90+, the distribution skews toward lower scores. \
+
+
+
+### Problem 8
+
+a.
+```{r}
+x <- seq(3, 6, length.out = 300)
+f <- (4 + (x - 3)^2) / 21
+plot(x, f, type = "l", lwd = 2, col = "blue",
+     xlab = "x (minutes)", ylab = "f(x)",
+     main = "Density of Race Completion Time")
+```
+
+b.
+Slow times near 6 minutes are more common. The density is an upward-opening parabola: $f(3) = 4/21 \approx 0.190$ while $f(6) = 13/21 \approx 0.619$, so the density is much higher near 6 than near 3. \
+
+c.
+$$P(X < 4) = \int_{3}^{4} \frac{4 + (x-3)^2}{21} \, dx = \frac{1}{21} \left[4x + \frac{(x-3)^3}{3}\right]_3^4 = \frac{1}{21}\left(16 + \frac{1}{3} - 12\right) = \frac{1}{21} \cdot \frac{13}{3} = \frac{13}{63} = 0.2063$$
+
+d.
+$$P(X > 5.5) = \int_{5.5}^{6} \frac{4 + (x-3)^2}{21} \, dx = \frac{1}{21}\left[4x + \frac{(x-3)^3}{3}\right]_{5.5}^{6} = \frac{1}{21}\left(24 + 9 - 22 - \frac{125}{24}\right) = \frac{1}{21}\left(11 - \frac{125}{24}\right) = \frac{1}{21} \cdot \frac{139}{24} = \frac{139}{504} = 0.2758$$
+
+e.
+$$F(x) = \int_3^x \frac{4 + (t-3)^2}{21}\,dt = \frac{1}{21}\left[4t + \frac{(t-3)^3}{3}\right]_3^x = \frac{1}{21}\left(4x + \frac{(x-3)^3}{3} - 12\right)$$
+
+Set $F(m) = 0.5$:
+$$\frac{1}{21}\left(4m + \frac{(m-3)^3}{3} - 12\right) = 0.5 \Rightarrow 4m + \frac{(m-3)^3}{3} - 12 = 10.5 \Rightarrow 4m + \frac{(m-3)^3}{3} = 22.5$$
+
+```{r}
+uniroot(function(m) 4*m + (m-3)^3/3 - 22.5, c(3, 6))
+```
+
+$m \approx 4.6875$.
+
+
+
+### Problem 10
+
+
+a.
+
+$$P(X < 90) = F(90) = 0.5934$$
+
+b.
+
+$$P(120 < X < 180) = F(180) - F(120) = 0.8347 - 0.6988 = 0.1359$$
+
+c.
+
+The median is where $F(x) = 0.5$. From the table, $F(60) = 0.4512$ and $F(90) = 0.5934$, so the median is between 60 and 90 hours, somewhere around $65$. \
+
+d.
+
+The 95th percentile is where $F(x) = 0.95$. From the table, $F(270) = 0.9328$ and $F(300) = 0.9502$, so the 95th percentile is right around 300. \
+
+
+### Problem 13
+
+Let $X \sim N(75, 10^2)$. Standardize with $Z = \frac{X - 75}{10}$. \
+
+a.
+$$P(X > 90) = P\left(Z > \frac{90 - 75}{10}\right) = P(Z > 1.5) = 1 - P(Z \leq 1.5) = 0.0668072$$
+```{r}
+1 - pnorm(1.5)
+```
+
+
+
+b.
+$$P(70 < X < 80) = P\left(-0.5 < Z < 0.5\right) = P(Z < 0.5) - P(Z < -0.5) = 0.3829249$$
+```{r}
+pnorm(0.5) - pnorm(-0.5)
+```
+
+
+
+c.
+
+```{r}
+qnorm(0.25)
+```
+$z_{0.25} = -0.6744898$, so:
+$$x = 75 + 10(-0.6744898) = 68.2551$$
+
+The score 68.2551 is below 70, so the letter grade of the lower quartile is a D. \
+
+
+### Problem 18
+
+Let $X \sim N(266, 16^2)$. Standardize with $Z = \frac{X - 266}{16}$.
+
+a.
+
+$$P(X > 270) = P\left(Z > \frac{270 - 266}{16}\right) = P(Z > 0.25) = 1 - P(Z \leq 0.25) = 0.4012937$$
+```{r}
+1 - pnorm(0.25)
+```
+
+
+b.
+
+
+```{r}
+qnorm(0.25)
+qnorm(0.75)
+
+266 + 16*0.6744898
+```
+$z_{0.25} = -0.6744898$, $z_{0.75} = 0.6744898$, so: \
+
+$$\text{Lower} = 266 + 16(-0.6744898) = 255.2082$$
+$$\text{Upper} = 266 + 16(0.6744898) = 276.7918$$
+
+The middle 50% of pregnancy lengths is approximately between $(255.2082, 276.7918)$ days. \
+
+
+
+
+c.
+
+We need $P(X < x) = 0.90$.
+
+```{r}
+qnorm(0.90)
+
+266 + 16*1.281552
+```
+$z_{0.90} = 1.281552$, so: \
+
+$$x = 266 + 16(1.2816) = 286.5048 \text{ days}$$
+
+
+### Problem 20
+
+
+Let $X \sim \text{Binomial}(n=1000, p=0.5)$. $X \approx N(\mu, \sigma^2)$ where $\mu = np = 500$ and $\sigma = \sqrt{np(1-p)} = \sqrt{250} = 15.81139$.
+
+
+
+a.
+$$E(X) = np = 1000 \cdot 0.5 = 500 \text{ heads}$$
+
+b.
+
+$$P(480 < X < 520) = P\left(\frac{480 - 500}{15.81139} < Z < \frac{520 - 500}{15.81139}\right) = P(-1.264911 < Z < 1.264911) = 0.7940968$$
+
+```{r}
+20/15.81139
+
+pnorm(1.264911) - pnorm(-1.264911)
+
+#BINOMIAL:
+pbinom(519, 1000, 0.5) - pbinom(480, 1000, 0.5)
+```
+
+
+
+c.
+
+$$P(X \geq 550) = P\left(Z \geq \frac{550 - 500}{15.81139}\right) = P(Z \geq 3.162) = 0.0007827029$$
+
+```{r}
+50/15.81139
+
+1 - pnorm(3.162277)
+
+# BINOMIAL: 
+1 - pbinom(549, 1000, 0.5)
+```
+
+This probability is less than 0.1%. It's very unlikely to get 550 or more heads with a fair coin, so it is very unlikely that the coin is actually fair. \
+
+
+BINOMIAL: \
+
+
+b.
+Using the exact binomial: $P(480 < X < 520) = 0.7825517$, close to the normal approximation of $0.7941$. \
+
+```{r}
+pbinom(519, 1000, 0.5) - pbinom(480, 1000, 0.5)
+```
+
+c.
+Using the exact binomial: $P(X \geq 550) = 0.000865268$, consistent with the normal approximation of $0.0008$. \ 
+
+```{r}
+1 - pbinom(549, 1000, 0.5)
+```
+
+
+### Problem 22
+
+
+By CLT, $\bar{X} \approx N\left(\mu, \frac{\sigma^2}{n}\right)$ where $\mu = 4.83$, $\sigma = 0.84$, $n = 25$, so $\sigma_{\bar{X}} = \frac{0.84}{\sqrt{25}} = 0.168$. \
+
+a.
+$$P(\bar{X} > 5) = P\left(Z > \frac{5 - 4.83}{0.168}\right) = P(Z > 1.011905) = 0.1557917$$
+```{r}
+0.17/0.168
+
+1 - pnorm(1.011905)
+```
+
+
+
+b.
+
+```{r}
+qnorm(0.05)
+qnorm(0.95)
+
+4.83 + 0.168*1.644854
+```
+$z_{0.05} = -1.644854$, $z_{0.95} = 1.644854$, so:
+$$\text{Lower} = 4.83 + 0.168(-1.644854) = 4.553665$$
+$$\text{Upper} = 4.83 + 0.168(1.644854) = 5.106335$$
+
+We are 90% confident the mean completion time for 25 students is between $(4.553665, 5.106335)$ minutes. \
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
