@@ -190,3 +190,5 @@ $$f_{Y \mid X}(y \mid x) = \frac{f(x,y)}{f_X(x)} = \frac{\frac{4}{y}}{\frac{1}{2
 
 
 
+
+
