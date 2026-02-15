@@ -1,0 +1,91 @@
+---
+title: "homework_6"
+author: "Peter"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+
+
+
+Sec 6.8 Exercises # 3,5 (use p=0.3),7,8,9,10,12,14,18 (I will discuss how to obtain credit)
+
+### Problem 3
+
+a.
+
+
+$n = 4$ rolls. 
+
+$p_1 = \frac{1}{6}$, prob of rolling a 1.
+$p_2 = \frac{1}{6}$, prob of rolling a 2. 
+$P_{\text{else}} = \frac{4}{6}$
+
+Using the general multinomial pmf formula we get:
+
+$P(O=o, T=t) = \frac{4!}{o! \cdot t! \cdot (4-0-t)!} \cdot \frac{1}{6}^o \cdot \frac{1}{6}^t \cdot \frac{4}{6}^{4-o-t}$ with $o \geq 0, t \geq 0, o + t \leq 0$.
+
+
+b.
+
+$P(O = T)$?
+
+We could either have $o=t=0, o=t=1, o=t=2$ since $o + t \leq 0$.
+
+So, we can use the formula above to solve for each case.
+
+$o=t=0$:
+
+$P(0,0) = \frac{4!}{4!} \cdot \frac{1}{6}^0 \cdot \frac{1}{6}^0 \cdot \frac{4}{6}^{4} = \frac{256}{1296}$ 
+
+$o=t=1$:
+
+$P(1,1) = \frac{4!}{1!1!2!} \cdot \frac{1}{6}^1 \cdot \frac{1}{6}^1 \cdot \frac{4}{6}^{2} = \frac{192}{1296}$ 
+
+$o=t=2$:
+
+$P(2,2) = \frac{4!}{2!2!} \cdot \frac{1}{6}^2 \cdot \frac{1}{6}^2 \cdot \frac{4}{6}^{0} = \frac{6}{1296}$ 
+
+$P(O=T) = \frac{454}{1296} = 0.3503086$
+
+
+c.
+
+$P(T=t | O = 1)$?
+
+$P(O=1) = 
+
+
+
+### Problem 5
+
+
+
+### Problem 7
+
+
+
+### Problem 8
+
+
+
+### Problem 9
+
+
+
+### Problem 10
+
+
+
+### Problem 12
+
+
+
+### Problem 14
+
+
+
+### Problem 18
+
+
+
