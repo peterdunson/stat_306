@@ -243,10 +243,84 @@ $$P(X+Y>2) = \int_{1}^{2} \int_{2-x}^{x} \frac{1}{2x} \, dy \, dx = \int_{1}^{2}
 
 ### Problem 10
 
+a. 
+
+We could solve this using a double integral, or, knowing that the unit circle has an area of $\pi$, and we know $C * Area = 1$, so $C\pi=1$ and $C= \frac{1}{\pi}$.
+
+b. 
+
+$f_Y(y) = \int_{-\sqrt{1-y^2}}^{\sqrt{1-y^2}} \frac{1}{\pi} \, dx = \frac{1}{\pi} \left[ x \right]_{-\sqrt{1-y^2}}^{\sqrt{1-y^2}}= \frac{2\sqrt{1-y^2}}{\pi}, \quad -1 < y < 1$.
+
+
+c.
+
+$P(Y>0.5) = \int_{0.5}^{1} \frac{2\sqrt{1-y^2}}{\pi} \, dy = 0.1955012$
+
+```{r}
+f_y <- function(y) {
+  (2 * sqrt(1 - y^2)) / pi
+}
+
+integrate(f_y, lower = 0.5, upper = 1)
+
+```
+
+
+d.
+
+$f_{X \mid Y}(x \mid y=0.5)$
+
+$f_Y(0.5) = \frac{2\sqrt{1-0.5^2}}{\pi} = \frac{\sqrt{3}}{\pi}$
+
+$x^2 + 0.25 \leq 1 \Rightarrow x^2 \leq 0.75 \Rightarrow -0.75 \leq x \leq 0.75$
+
+$$f_{X \mid Y}(x \mid y=0.5) = \frac{\frac{1}{\pi}}{\frac{\sqrt{3}}{\pi}} = \frac{1}{\sqrt{3}}, \quad -0.75 \leq x \leq 0.75$$
 
 
 ### Problem 12
 
+$f(x \mid \lambda) = \frac{e^{-\lambda}\lambda^x}{x!}, \quad x = 0, 1, 2, \dots$
+
+$P(\lambda = l) = \frac{1}{4}, \quad l \in {0.5, 1, 1.5, 2}$
+
+a.
+
+$f(x, \lambda) = P(X=x, \lambda = l) = P(X=x \mid \lambda = l) \cdot P(\lambda = l) = \frac{e^{-\lambda}\lambda^x}{x!} \cdot \frac{1}{4}$
+
+$f(x, \lambda) = \frac{e^{-\lambda}\lambda^x}{4x!}, \quad x = 0, 1, 2, \dots \quad l \in {0.5, 1, 1.5, 2}$
+
+
+b.
+
+$P(X=0)$?
+
+$P(X=0) = \sum_{l \in \{0.5, 1, 1.5, 2\}} f(0, \lambda) = \frac{1}{4} \left( e^{-0.5} + e^{-1.0} + e^{-1.5} + e^{-2.0} \right) = 0.3332189$
+
+
+```{r}
+.25 * (exp(-0.5) + exp(-1) + exp(-1.5) + exp(-2))
+```
+
+
+c.
+
+$P(\lambda = l \mid X=0) = \frac{P(X=0, \lambda = l)}{P(X=0)} = \frac{\frac{1}{4}e^{-\lambda}}{0.3332189}$
+
+```{r}
+( (1/4) * exp(-0.5) ) / 0.3332189
+( (1/4) * exp(-1.0) ) / 0.3332189
+( (1/4) * exp(-1.5) ) / 0.3332189
+( (1/4) * exp(-2.0) ) / 0.3332189
+```
+
+
+$P(\lambda = 0.5 \mid X=0) = 0.4550542$
+
+$P(\lambda = 1.0 \mid X=0) = 0.2760043$
+
+$P(\lambda = 1.5 \mid X=0) = 0.1674051$
+
+$P(\lambda = 2.0 \mid X=0) = 0.1015363$
 
 
 ### Problem 14
