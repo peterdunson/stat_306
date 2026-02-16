@@ -325,6 +325,10 @@ $P(\lambda = 2.0 \mid X=0) = 0.1015363$
 
 ### Problem 14
 
+a.
+
+$f(y, p) = f(p) \cdot p(y \mid p) = 6p(1-p) \cdot \binom{2}{y}p^y(1-p)^{2-y}$
+
 
 
 ### Problem 18
