@@ -376,13 +376,66 @@ $P(Y=4 \mid N=6) = \binom{6}{4}(0.7)^4(0.3)^2 = 0.324135$
 $P(N=6, Y=4) = 0.2 \cdot 0.324135 = 0.064827$
 
 
+b.
+
+$P(N=n, Y=y) = P(N=n) \cdot P(Y=y \mid N=n) = P(N=n) \cdot \binom{n}{y}(0.7)^y(0.3)^{n-y}$
+
+```{r}
+n_vals <- c(5, 6, 7, 8, 9, 10)
+p_n <- c(0.2, 0.2, 0.2, 0.2, 0.1, 0.1)
+p_success <- 0.7
+
+grid <- expand.grid(n = n_vals, y = 0:10)
+grid <- grid[grid$y <= grid$n, ]
+
+grid$pn <- p_n[match(grid$n, n_vals)]
+
+grid$joint <- grid$pn * dbinom(grid$y, size = grid$n, prob = p_success)
+
+grid[which.max(grid$joint), ]
+```
+
+
+c.
+
+$P(N=n \mid Y=4) = \frac{P(N=n, Y=4)}{P(Y=4)}$
+
+$P(Y=4) = \sum_{n=5}^{10} P(N=n, Y=4)$
+
+```{r}
+n <- 5:10
+pn <- c(0.2, 0.2, 0.2, 0.2, 0.1, 0.1)
+
+joint_y4 <- pn * dbinom(4, size = n, prob = 0.7)
+
+cond_dist <- joint_y4 / sum(joint_y4)
+
+data.frame(N = n, Conditional_Prob = cond_dist)
+```
+
+$$
+P(N=n \mid Y=4)
+= \begin{cases} 
+0.3267 & n=5 \newline
+0.2940 & n=6 \newline
+0.2058 & n=7 \newline
+0.1235 & n=8 \newline
+0.0333 & n=9 \newline
+0.0167 & n=10 
+\end{cases}
+$$
 
 
 
+d.
 
+$E(N \mid Y=4) = \sum_{n=5}^{10} n \cdot P(N=n \mid Y=4)$
 
+```{r}
+sum(n * cond_dist)
+```
 
-
+$E(N \mid Y=4) = (5 \times 0.3267) + (6 \times 0.2940) + (7 \times 0.2058) + (8 \times 0.1235) + (9 \times 0.0333) + (10 \times 0.0167) = 6.292804$
 
 
 
