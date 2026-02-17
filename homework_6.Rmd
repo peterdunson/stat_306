@@ -330,8 +330,46 @@ a.
 $f(y, p) = f(p) \cdot p(y \mid p) = 6p(1-p) \cdot \binom{2}{y}p^y(1-p)^{2-y}$
 
 
+b.
+
+$P(Y=2)$?
+
+$f(2,p) = 6p(1-p) \cdot \binom{2}{2}p^2(1-p)^{2-2} = 6p^3(1-p)$
+
+$P(Y=2) = \int_{0}^{1} 6p^3(1-p) \, dp = 0.3$
+
+```{r}
+f <- function(p) {
+  6 * p^3 * (1 - p)
+}
+
+integrate(f, lower = 0, upper = 1)
+```
+
+
+c.
+
+$P(p \mid Y=2) = \frac{f(2,p)}{P(Y=2)} = \frac{6p^3(1-p)}{0.3} = 20p^3(1-p)$
+
+$P(p>0.5 \mid Y=2) = \int_{0.5}^{1} 20(p^3-p^4) \, dp = 0.8125$
+
+```{r}
+f_posterior <- function(p) {
+  20 * p^3 * (1 - p)
+}
+
+integrate(f_posterior, lower = 0.5, upper = 1)
+```
+
 
 ### Problem 18
+
+Y = # of makes
+
+$Y \sim \text{Binom}(n, p=0.7)$
+
+
+
 
 
 
