@@ -1,0 +1,385 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={306\_takehome\_exam1\_peterdunson},
+  pdfauthor={Peter},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{306\_takehome\_exam1\_peterdunson}
+\author{Peter}
+\date{2026-02-21}
+
+\begin{document}
+\maketitle
+
+STAT 306 --- Bayesian Statistics
+
+Take-Home Exam 1 Spring 2026
+
+Your written solutions to this exam are due at classtime - 10:10 am
+Wednesday February 25, 2026.
+
+For this exam, you may use your text, class notes, your old homeworks,
+my written homework solutions and any course handouts (basically, you
+may use any written materials specific to this class.) As for
+technology, you may use your own hand calculator, R (including my R
+scripts on Moodle), Python, Maple, Excel, Desmos, Wolfram, and other
+comparable calculation software programs (please cite what you use).
+
+However, - you MAY NOT consult with any other person, living or dead -
+you MAY NOT search for solutions on the internet - you MAY NOT use
+generative AI in any of its forms
+
+In other words, the work you submit must originate from YOU!
+
+Please sign the following pledge: The work I present here is completely
+my own. In all phases of the completion of this exam, I NEITHER accepted
+assistance from NOR gave assistance to any other person. In addition, I
+DID NOT search the internet for any solutions and I DID NOT employ
+generative AI.\\
+
+Your Signature:
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+\newpage
+
+\subsection{Problem 1}\label{problem-1}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  On the kitchen counter, a cookie jar initially contained three Oreo
+  cookies and five sugar cookies (almost white in color). When someone
+  pulls out an Oreo cookie, there is always that characteristic residue
+  of fine black crumbs left on the counter. Initially the counter is
+  completely clean, but after the five-year-old son of the family
+  reaches in and pulls out three cookies at random, one at a time, his
+  mom notices the tell-tale scatter of black crumbs on the counter.
+  Given this forensic evidence, find
+\end{enumerate}
+
+\textbf{Hypergeometric}
+
+\subsubsection{{[}a{]} the conditional probability that the boy drew
+exactly two Oreos in his sample of three cookies. Show your
+calculations.
+{[}12{]}}\label{a-the-conditional-probability-that-the-boy-drew-exactly-two-oreos-in-his-sample-of-three-cookies.-show-your-calculations.-12}
+
+3 oreo cookies, 5 sugar cookies\\
+
+At least 1 of 3 pulled is oreo.\\
+
+Total number of ways to pull 3 cookies from 8 is
+\(\binom{8}{3} = 56\).\\
+
+\$\$ P(X=k): \newline
+
+P(X=0) = \frac{\binom{3}{0} \cdot \binom{5}{3}}{56} = \frac{10}{56}
+\newline P(X=1) = \frac{\binom{3}{1} \cdot \binom{5}{2}}{56} =
+\frac{30}{56} \newline P(X=2) =
+\frac{\binom{3}{2} \cdot \binom{5}{1}}{56} = \frac{15}{56} \newline
+P(X=3) = \frac{\binom{3}{3} \cdot \binom{5}{0}}{56} = \frac{1}{56}
+\newline
+
+\$\$
+
+\(P(X=2 \mid X \geq 1) = \frac{P(X=2, X \geq 1)}{P(X \geq 1)}\)
+
+Given our pmf above, \(P(X=2, X \geq 1) = \frac{15}{56}\) and
+\(P(X>=1) = \frac{46}{56}\), so:
+
+\$\$ P(X=2 \mid X \geq 1) = \frac{15}{46} = 0.32608695652
+
+\$\$
+
+\subsubsection{{[}b{]} the conditional probability that the boy's third
+cookie drawn was a sugar cookie. Show your calculations.
+{[}12{]}}\label{b-the-conditional-probability-that-the-boys-third-cookie-drawn-was-a-sugar-cookie.-show-your-calculations.-12}
+
+Total outcomes where \(X \geq 1 = 30 + 15 + 1 = 46\).\\
+
+Let \(S_3\) be the event that the 3rd cookie is Sugar. We need
+\(P(S_3 \mid X \geq 1)\).\\
+
+Total number of Sugar cookies across all \(X \geq 1\) cases:\\
+
+\(X=1\) (2 Sugar): \(30 \cdot \frac{2}{3} \cdot 3 = 60\) sugar cookies\\
+\(X=2\) (1 Sugar): \(15 \cdot \frac{1}{3} \cdot 3 = 15\) sugar cookies\\
+\(X=3\) (0 Sugar): \(0\) sugar cookies\\
+
+Total sugar cookies in our reduced sample space =
+\(60 + 15 + 0 = 75\).\\
+
+Since each of the 3 positions (1st, 2nd, 3rd) is equally likely to hold
+any of the cookies in the sample:\\
+
+\$\$ P(S\_3 \mid X \geq 1) = P(S\_3 \mid X \geq 1) =
+\frac{\sum S_i}{n \cdot (\text{Valid Outcomes})} \newline
+
+P(S\_3 \mid X \geq 1) = \frac{75}{46 \cdot 3} = \frac{75}{138} \newline
+
+P(S\_3 \mid X \geq 1) = \frac{25}{46} = 0.54347826087 \$\$
+
+\subsubsection{\texorpdfstring{{[}c{]} the expectation of the number of
+Oreos eaten by the boy. {[}10{]}\\
+}{{[}c{]} the expectation of the number of Oreos eaten by the boy. {[}10{]} }}\label{c-the-expectation-of-the-number-of-oreos-eaten-by-the-boy.-10}
+
+We need the conditional expectation \(E[X \mid X \geq 1]\).\\
+
+\(P(X=k \mid X \geq 1) = \frac{P(X=k)}{P(X \geq 1)}\):\\
+
+\(P(X=1 \mid X \geq 1) = \frac{30/56}{46/56} = \frac{30}{46}\)\\
+\(P(X=2 \mid X \geq 1) = \frac{15/56}{46/56} = \frac{15}{46}\)\\
+\(P(X=3 \mid X \geq 1) = \frac{1/56}{46/56} = \frac{1}{46}\)\\
+
+So, the expectation is the weighted sum of these outcomes:\\
+
+\$\$ E{[}X \mid X \geq 1{]} = \sum\_\{k=1\}\^{}\{3\} k \cdot P(X=k
+\mid X \geq 1) \newline
+
+E{[}X \mid X \geq 1{]} = \left(1 \cdot \frac{30}{46}\right) + \left(2
+\cdot \frac{15}{46}\right) + \left(3 \cdot \frac{1}{46}\right) \newline
+
+E{[}X \mid X \geq 1{]} = \frac{30 + 30 + 3}{46} = \frac{63}{46} \newline
+
+E{[}X \mid X \geq 1{]} = 1.36956521739 \$\$
+
+\newpage
+
+\subsection{Problem 2}\label{problem-2}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  A player rolls a fair die. If it is not a six, then the player's turn
+  is over and his score is the value showing on the die. However, if the
+  die value is six, he gets to roll one more time as a bonus! The
+  player's score X is then the sum of his two rolls. For example,
+  consider the following die sequences, and the subsequent score for
+  that player's turn.
+\end{enumerate}
+
+rolls : (6,1) score X = 7 rolls : (6,6) score X = 12 rolls : (4) score X
+= 4 rolls : (3) score X = 3
+
+\subsubsection{{[}a{]} Find the probability mass function for X (a table
+will suffice). Please don't simplify probability fractions --- keep them
+with the same denominator so they're easy to compare.
+{[}10{]}}\label{a-find-the-probability-mass-function-for-x-a-table-will-suffice.-please-dont-simplify-probability-fractions-keep-them-with-the-same-denominator-so-theyre-easy-to-compare.-10}
+
+\subsubsection{{[}b{]} Verify that your probabilities in {[}a{]} sum to
+an appropriate value.
+{[}8{]}}\label{b-verify-that-your-probabilities-in-a-sum-to-an-appropriate-value.-8}
+
+\subsubsection{{[}c{]} Find the expectation and variance for X.
+{[}16{]}}\label{c-find-the-expectation-and-variance-for-x.-16}
+
+\subsubsection{{[}d{]} If we know that the player's score is at least 4,
+then find the conditional probability that she got a bonus roll.
+{[}8{]}}\label{d-if-we-know-that-the-players-score-is-at-least-4-then-find-the-conditional-probability-that-she-got-a-bonus-roll.-8}
+
+\newpage
+
+\subsection{Problem 3}\label{problem-3}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Sometimes when it is desired to get survey data on a sensitive issue,
+  for example whether or not students have ever cheated on an exam, the
+  following method is employed. The question is ``Have you ever cheated
+  on an exam?'', and the student answering the question flips a fair
+  coin --- if the coin lands heads the student answers ``Yes''
+  regardless of the truth, and if the coin lands tails, the student
+  answers truthfully. Then a Yes answer is diluted by a plethora of
+  false positives, giving security to a student that answers Yes
+  genuinely. This survey sampling strategy is actually very useful in
+  getting data on sensitive issues by backing out the false positives
+  --- so clever! Suppose in a very large student population, a
+  proportion p of the students have cheated on an exam in their past.
+\end{enumerate}
+
+\subsubsection{{[}a{]} If a student is chosen at random from this
+population, and takes the survey by flipping the coin, and answering
+accordingly, then what is the probability the student answers Yes?
+{[}10{]}}\label{a-if-a-student-is-chosen-at-random-from-this-population-and-takes-the-survey-by-flipping-the-coin-and-answering-accordingly-then-what-is-the-probability-the-student-answers-yes-10}
+
+\subsubsection{{[}b{]} Suppose five students from this population are my
+advisees, and upon taking the coin-flip survey, all five answer Yes.
+Given this information, what is the probability that at least one of my
+advisees has cheated on an exam? Your answer will of course be a
+function of
+p.~{[}16{]}}\label{b-suppose-five-students-from-this-population-are-my-advisees-and-upon-taking-the-coin-flip-survey-all-five-answer-yes.-given-this-information-what-is-the-probability-that-at-least-one-of-my-advisees-has-cheated-on-an-exam-your-answer-will-of-course-be-a-function-of-p.-16}
+
+\newpage
+
+\subsection{Problem 4}\label{problem-4}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  There are two boxes on stage. Box B contains 10 blue balls, and the
+  other, Box W, contains 6 white balls. A common fair die is rolled by
+  the game-master and if the roll of the die is x, then xblue balls are
+  removed from Box B and these x blue balls are placed in Box W.
+  Finally, after stirring, a ball is drawn at random from Box W.
+\end{enumerate}
+
+\subsubsection{{[}a{]} Find the probability that the final ball drawn
+from Box W is blue.
+{[}10{]}}\label{a-find-the-probability-that-the-final-ball-drawn-from-box-w-is-blue.-10}
+
+\subsubsection{{[}b{]} Find the conditional distribution of the die roll
+given that the final ball drawn from Box W is blue.
+{[}16{]}}\label{b-find-the-conditional-distribution-of-the-die-roll-given-that-the-final-ball-drawn-from-box-w-is-blue.-16}
+
+\subsubsection{{[}c{]} Compare and contrast the conditional distribution
+of die rolls in {[}b{]} with the distribution of the die rolls before we
+learned that the ball from Box W was blue.
+{[}8{]}}\label{c-compare-and-contrast-the-conditional-distribution-of-die-rolls-in-b-with-the-distribution-of-the-die-rolls-before-we-learned-that-the-ball-from-box-w-was-blue.-8}
+
+\newpage
+
+\subsection{Problem 5}\label{problem-5}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  The probability p that an old component of robotic machinery success-
+  fully attaches two engine parts is modeled by the prior distribution
+  π(p) = 2p , 0 \textless p\textless1. The variable of interest in a
+  factory experiment is X = the number of attempts required until the
+  robot successfully attaches the two parts, and you may assume that
+  attempts are independent, and each has probably of success p.
+\end{enumerate}
+
+\subsubsection{a{]} For starters, show that π(p) is a valid prior
+distribution.
+{[}6{]}}\label{a-for-starters-show-that-ux3c0p-is-a-valid-prior-distribution.-6}
+
+\subsubsection{b{]} Find the joint distribution for the random variables
+p and X.
+{[}10{]}}\label{b-find-the-joint-distribution-for-the-random-variables-p-and-x.-10}
+
+\subsubsection{c{]} Find the marginal distribution for the random
+variable X. In other words, find a formula for P(X= x) for x=
+1,2,3,\ldots.
+{[}12{]}}\label{c-find-the-marginal-distribution-for-the-random-variable-x.-in-other-words-find-a-formula-for-px-x-for-x-123.-12}
+
+\subsubsection{d{]} Find the posterior distribution for pgiven that X=
+xis observed in the experiment.
+{[}10{]}}\label{d-find-the-posterior-distribution-for-pgiven-that-x-xis-observed-in-the-experiment.-10}
+
+\subsubsection{e{]} In Bayesian inference, often the mean (or
+expectation) of the posterior distribution is used as an estimate of p
+based on the evidence --- for this experiment, find this posterior mean
+as a function of the observed data x.
+{[}8{]}}\label{e-in-bayesian-inference-often-the-mean-or-expectation-of-the-posterior-distribution-is-used-as-an-estimate-of-p-based-on-the-evidence-for-this-experiment-find-this-posterior-mean-as-a-function-of-the-observed-data-x.-8}
+
+\newpage
+
+\#\#Problem 6
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Let Ω be the region defined by: Ω = \{(x,y) : 0 \textless x\textless2,
+  0 \textless y\textless{} x/2\} I recommend you graph the region Ω.
+  Suppose (X,Y) are jointly continuous random variables distributed on Ω
+  with joint density
+\end{enumerate}
+
+f(x,y) = (1/3)(y+ 2x), (x,y) ∈ Ω,
+
+and f(x,y) = 0 otherwise.
+
+\subsubsection{{[}a{]} Verify that f(x,y) is a valid density function.
+{[}10{]}}\label{a-verify-that-fxy-is-a-valid-density-function.-10}
+
+\subsubsection{{[}b{]} Find the marginal density for X.
+{[}8{]}}\label{b-find-the-marginal-density-for-x.-8}
+
+\subsubsection{{[}c{]} Find the marginal density for Y.
+{[}10{]}}\label{c-find-the-marginal-density-for-y.-10}
+
+\subsubsection{{[}d{]} Find the conditional density of Y given X.
+{[}8{]}}\label{d-find-the-conditional-density-of-y-given-x.-8}
+
+\subsubsection{{[}e{]} Find the expectation of Y given that X= x.
+{[}10{]}}\label{e-find-the-expectation-of-y-given-that-x-x.-10}
+
+\subsubsection{{[}f{]} If we know that X = 1, find the probability that
+Y is in the interval (1/4, 1/2).
+{[}10{]}}\label{f-if-we-know-that-x-1-find-the-probability-that-y-is-in-the-interval-14-12.-10}
+
+\end{document}
