@@ -65,8 +65,7 @@ library(ProbBayes)
 
 # put in the prior distribution
 
-bayes_table <- data.frame(p=c(0.4,0.5,0.6),
-                          Prior=c(1/3,1/3,1/3))
+bayes_table <- data.frame(p=c(0.4,0.5,0.6), Prior=c(1/3,1/3,1/3))
 bayes_table
 
 # We will suppose we got 2 heads in 3 flips of the coin.
