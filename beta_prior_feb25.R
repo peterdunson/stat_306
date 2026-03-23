@@ -1,4 +1,4 @@
-# February 25, 2026
+# February 27, 2026
 
 # Today we explore the Beta(a,b) distribution as a 
 # prior distribution on a Bernoulli success

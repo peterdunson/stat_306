@@ -115,3 +115,16 @@ barplot(posterior3,names.arg=c(0.4,0.5,0.6),
         col="magenta", ylim=c(0,0.6),
         xlab="Probability of Heads",
         ylab="Probability")
+
+
+
+p <- seq(0, 1, length=100)
+
+alpha <- 10
+beta <- 10
+
+densities <- dbeta(p, alpha, beta)
+
+plot(p, densities, type='l', 
+     main=paste("Beta Distribution (alpha =", alpha, ", beta =", beta, ")"),
+     xlab="Probability", ylab="Density")

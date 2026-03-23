@@ -71,8 +71,7 @@ bayes_table
 # We will suppose we got 2 heads in 3 flips of the coin.
 # Now create the likelihood
 
-bayes_table$Likelihood <- dbinom(2,size=3,
-                                 prob=bayes_table$p)
+bayes_table$Likelihood <- dbinom(2,size=3, prob=bayes_table$p)
 bayes_table
 
 # initialize the Product and Posterior columns in our table
@@ -217,3 +216,8 @@ barplot(bayes_table_6$Posterior,
         main="Posterior Probabilities --- 16 of 30",
         col="magenta",
         xlab="Possible p",ylab="Probability",ylim=c(0,0.8))
+
+
+
+
+
