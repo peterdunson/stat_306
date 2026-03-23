@@ -94,5 +94,9 @@ barplot(postPDvalues$postPD,names.arg=0:20,
 prob <- pbetap(c(a+yobs,b+n-yobs),20,0:20)
 prob
 prob_plot(data.frame(Y=0:20, Probability=prob),
-          Color="navy", Size=4)+
+          Color="lightblue4", Size=4)+
    theme(text=element_text(size=18))
+
+
+
+
