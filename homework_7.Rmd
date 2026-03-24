@@ -34,38 +34,38 @@ sum(d$Posterior[d$p > 0.5])
 sum(d$Posterior[d$p > 0.2 & d$p < 0.4])
 ```
 
-a. 
+a.  \
 
-0.4469407
+0.4469407 \
 
 b.
 
-0.01270655
+0.01270655 \
 
-c.
+c. \
 
-0.4469407, same as a since only p = 0.3 is between 0.2 and 0.4
+0.4469407, same as a since only p = 0.3 is between 0.2 and 0.4 \
 
 
-
+ 
 ### Problem 4
 
-a. Beta(1,1)
+a. Beta(1,1) \
 
-The Beta(1,1) prior is the uniform distribution on [0,1], all values of p between 0 and 1 are equally likely a priori. This is a non-informative prior, representing no knowledge about the preference to have dinner out on friday.
+The Beta(1,1) prior is the uniform distribution on [0,1], all values of p between 0 and 1 are equally likely a priori. This is a non-informative prior, representing no knowledge about the preference to have dinner out on friday. \
 
-b. Beta(0.5, 1)
+b. Beta(0.5, 1) \
 
-The Beta(0.5, 1) prior is a strongly right skewed distribution that puts much more weight on values of p close to 0 than on values of p close to 1. This represents a strong prior belief that the probability of preferring dinner out on friday is extremely low. 
+The Beta(0.5, 1) prior is a strongly right skewed distribution that puts much more weight on values of p close to 0 than on values of p close to 1. This represents a strong prior belief that the probability of preferring dinner out on friday is extremely low. \
 
-c. Beta(4, 2)
+c. Beta(4, 2) \
 
-The Beta(4,2) prior a left skewed distribution that puts slightly more weight on values of p above 0.5. This represents the belief that the probability of preferring dinner out on friday is more popular, more than half of students prefer it. 
+The Beta(4,2) prior a left skewed distribution that puts slightly more weight on values of p above 0.5. This represents the belief that the probability of preferring dinner out on friday is more popular, more than half of students prefer it.  \
 
 
-d. Beta(4,1) vs Beta(4,2)
+d. Beta(4,1) vs Beta(4,2) \
 
-Both of the Beta(4,1) and Beta(4,2) priors are left skewed distributions which put more weight on higher values of p. The Beta(4,1) distribution has a higher mode (around p=1) and higher mean than the Beta(4,2) (mode $\approx 0.75$). This means the Beta(4,1) prior is much more confident about the preference for friday dinners being around 1, while Beta(4,2) allows for more uncertainty in p value. 
+Both of the Beta(4,1) and Beta(4,2) priors are left skewed distributions which put more weight on higher values of p. The Beta(4,1) distribution has a higher mode (around p=1) and higher mean than the Beta(4,2) (mode $\approx 0.75$). This means the Beta(4,1) prior is much more confident about the preference for friday dinners being around 1, while Beta(4,2) allows for more uncertainty in p value.  \
 
 
 
@@ -92,7 +92,7 @@ hist(beta_data(c(4, 2), nsim = 100),
 
 
 a.
-The density of Beta(0.5,0.5) are:
+The density of Beta(0.5,0.5) are: \
 
 $p=0.1 \rightarrow 1.0610330$
 $p=0.5 \rightarrow 0.6366198$
@@ -104,13 +104,13 @@ $Prob(0.2 \leq p \leq 0.6) = 0.3141632$
 
 c.
 
-Quantiles of Beta(10,10) at the probability values in the set $ {0.1, 0.5, 0.9, 1.5}$: 
+Quantiles of Beta(10,10) at the probability values in the set $ {0.1, 0.5, 0.9, 1.5}$:  \
 
 $0.3579299, 0.5000000, 0.6420701$
 
 d.
 
-See histogram above.
+See histogram above. \
 
 
 ### Problem 7
@@ -127,7 +127,7 @@ beta.select(list(p = 0.4, x = 0.7),
 beta_draw(c(3.21, 1.24))
 ```
 
-$a = 3.21, b = 1.24$
+$a = 3.21, b = 1.24$ \
 
 b.
 
@@ -144,26 +144,26 @@ quantile(y_sim, c(0.1, 0.25, 0.5, 0.75, 0.9))
 ggplot(data.frame(y = y_sim), aes(y)) +
   geom_bar(fill = "green4") +
   xlab("y tilda (successes out of 20)") +
-  ggtitle("Prior Predictive Distribution")
+  ggtitle("Prior Predictive Dist")
 ```
 
-10% 25% 50% 75% 90% 
-  8  12  15  18  19 
+10% 25% 50% 75% 90% \ 
+  8  12  15  18  19 \ 
 
-Looks very similar to the owners belief of Beta(3.21, 1.24).
+Looks very similar to the owners belief of Beta(3.21, 1.24). \
 
 
 
 ### Problem 9
 
-a.
+a. \
 
 $Beta(2,2): \mu = 0.5, n_p = 4$
 $Beta(20,20): \mu = 0.5, n_p = 40$
 
-This means that the Beta(20,20) is much more concentrated around its mean of 0.5, while the Beta(2,2) is more spread out and allows for more uncertainty in the value of p.
+This means that the Beta(20,20) is much more concentrated around its mean of 0.5, while the Beta(2,2) is more spread out and allows for more uncertainty in the value of p. \
 
-b.
+b. \
 
 $Beta(6,8)$
 $Beta(24, 26)$
@@ -176,11 +176,11 @@ grid.arrange(
 )
 ```
 
-This illustrates what we were talking about in part a. For the Beta(2,2) prior, the data shifts the prior mean from 0.5 to around 0.43, while the Beta(20,20) prior has a very similar mean to the posterior (both around 0.5). The data has much less influence on the stronger prior.
+This illustrates what we were talking about in part a. For the Beta(2,2) prior, the data shifts the prior mean from 0.5 to around 0.43, while the Beta(20,20) prior has a very similar mean to the posterior (both around 0.5). The data has much less influence on the stronger prior. \
 
-c.
+c. \
 
-Both priors have the same mean (0.5), but the plots should show Beta(20,20) posterior barely moves while Beta(2,2) posterior shifts noticeably toward the data ($\hat{p} = 0.4$). We can see this in part b.
+Both priors have the same mean (0.5), but the plots should show Beta(20,20) posterior barely moves while Beta(2,2) posterior shifts toward the data ($\hat{p} = 0.4$). We can see this in part b. \
 
 ```{r}
 set.seed(42)
@@ -191,7 +191,7 @@ quantile(s1, c(0.1, 0.5, 0.9))
 quantile(s2, c(0.1, 0.5, 0.9))
 ```
 
-The quantiles of Beta(2,2) are more spread out and shifted toward 0.4, while Beta(20,20) is tighter and closer to 0.5.
+The quantiles of Beta(2,2) are more spread out and shifted toward 0.4, while Beta(20,20) is tighter and closer to 0.5. \
 
 
 d.
@@ -204,7 +204,7 @@ grid.arrange(
 )
 ```
 
-We can see in this example that the data carries much more weight compared to the prior. The posteriors are much more similar than in part b, the data is doing most of the work rather than the prior. We still see the Beta(20,20) posterior has less uncertainty than the Beta(2,2) posterior, but both are much more influenced by the data than in part b.
+We can see in this example that the data carries much more weight compared to the prior. The posteriors are much more similar than in part b, the data is doing most of the work rather than the prior. We still see the Beta(20,20) posterior has less uncertainty than the Beta(2,2) posterior, but both are much more influenced by the data than in part b. \
 
 
 e.
@@ -224,25 +224,25 @@ grid.arrange(
 )
 ```
 
-$Beta(9,1): \mu = 0.9, n_p = 10$
-$Beta(45,5): \mu = 0.9, n_p = 50$
+$Beta(9,1): \mu = 0.9, n_p = 10$ \
+$Beta(45,5): \mu = 0.9, n_p = 50$ \
 
-The priors have the same mean, but the Beta(45,5) is much stronger than the Beta(9,1) with $n_p = 50$ vs $n_p = 10$.
+The priors have the same mean, but the Beta(45,5) is much stronger than the Beta(9,1) with $n_p = 50$ vs $n_p = 10$. \
 
-In the n=20, y=5 case, the data has a much stronger influence on the Beta(9,1), with the mean shifting from 0.9 to around 0.5. For the Beta(45,5), the mean only shifts slightly from 0.9 to around 0.7.
+In the n=20, y=5 case, the data has a much stronger influence on the Beta(9,1), with the mean shifting from 0.9 to around 0.5. For the Beta(45,5), the mean only shifts slightly from 0.9 to around 0.7. \
 
-For the n=200, y=50 case, the data has a much stronger influence on both priors. The Beta(9,1) mean shifts from 0.9 to around 0.3, while the Beta(45,5) mean shifts from 0.9 to around 0.375. The larger sample size means the data has more influence on the posterior, even for the stronger prior.
+For the n=200, y=50 case, the data has a much stronger influence on both priors. The Beta(9,1) mean shifts from 0.9 to around 0.3, while the Beta(45,5) mean shifts from 0.9 to around 0.375. The larger sample size means the data has more influence on the posterior, even for the stronger prior. \
 
 
 ### Problem 10
 
-Posterior: $Beta(a+y, b+n-y)$
+Posterior: $Beta(a+y, b+n-y)$ \
 
-$E(p \mid Y = y) = \frac{a+y}{a+b+n} = \frac{a+b}{a+b+n} \cdot \frac{a}{a+b} + \frac{n}{a+b+n} \cdot \frac{y}{n}$
+$E(p \mid Y = y) = \frac{a+y}{a+b+n} = \frac{a+b}{a+b+n} \cdot \frac{a}{a+b} + \frac{n}{a+b+n} \cdot \frac{y}{n}$ \
 
-This is the weighted average of the prior mean $\frac{a}{a+b}$ and the sample proportion $\frac{y}{n}$, with weights $\frac{a+b}{a+b+n}$ and $\frac{n}{a+b+n}$ that sum to 1.
+This is the weighted average of the prior mean $\frac{a}{a+b}$ and the sample proportion $\frac{y}{n}$, with weights $\frac{a+b}{a+b+n}$ and $\frac{n}{a+b+n}$ that sum to 1. \
 
-As n approaches infinity, the weight on the prior mean goes to 0 and the weight on the sample proportion goes to 1, so the posterior mean approaches the sample proportion. When $a+b$ is large relative to n, the weight on the prior mean is larger and the posterior mean is more influenced by the prior.
+As n approaches infinity, the weight on the prior mean goes to 0 and the weight on the sample proportion goes to 1, so the posterior mean approaches the sample proportion. When $a+b$ is large relative to n, the weight on the prior mean is larger and the posterior mean is more influenced by the prior. \
 
 
 ### Problem 12
@@ -265,9 +265,9 @@ $H_2 : p \leq 0.5 \text{ or } p \geq 0.6$
 $P(H_1 \mid data) = 0.3577102$
 $P(H_2 \mid data) = 0.6422898$
 
-$BF = \frac{P(H_1 \mid data)}{P(H_2 \mid data)} = 0.5569297$
+$BF = \frac{P(H_1 \mid data)}{P(H_2 \mid data)} = 0.5569297$ \
 
-The bayes factor is less than 1, so the data does not support the wifes claim. There is a 35.8% probability that p falls between 50% and 60%, while a 64.2% probability that it falls outside this range. Therefore, we do not support $H_1$. 
+The bayes factor is less than 1, so the data does not support the wifes claim. There is a 35.8% probability that p falls between 50% and 60%, while a 64.2% probability that it falls outside this range. Therefore, we do not support $H_1$.  \
 
 
 ### Problem 14
@@ -292,27 +292,27 @@ beta_quantile(0.01, c(15.06, 10.56))
 qbeta(0.01, 15.06, 10.56)
 ```
 
-a.
+a. \
 
-We are 95% confident that the true proportion of students that prefer eating out on friday is between 0.3960802 and 0.7665697.
+We are 95% confident that the true proportion of students that prefer eating out on friday is between 0.3960802 and 0.7665697. \
 
-b.
+b. \
 
-We are 98% confident that the true proportion is between 0.361 and 0.795
+We are 98% confident that the true proportion is between 0.361 and 0.795 \
 
-c.
+c. \
 
-There is a 90% probability that the true proportion is less than 0.710.
+There is a 90% probability that the true proportion is less than 0.710. \
 
-d.
+d. \
 
-There is a 99% probability that the true proportion is greater than 0.361.
+There is a 99% probability that the true proportion is greater than 0.361. \
 
 
 
 ### Problem 15
 
-a.
+a. \
 
 ```{r}
 set.seed(32)
@@ -325,23 +325,23 @@ hist(logit, prob = TRUE, col = "pink2", border = "white",
      main = "Posterior of Log-Odds", xlab = "logit(p)")
 ```
 
-
-b.
+ 
+b. \
 
 ```{r}
 quantile(logit, c(0.05, 0.95))
 ```
 
-There is a 90% posterior probability that the true log-odds lies between -1.11471536 and 0.07076143.
+There is a 90% posterior probability that the true log-odds lies between -1.11471536 and 0.07076143. \
 
 
 ### Problem 17
 
-a.
+a. \
 
 $p \sim Beta(8, 2)$
 
-b.
+b. \
 
 ```{r}
 library(ProbBayes)
@@ -356,7 +356,7 @@ benedict_prior
 $p \sim \text{Beta}(34.95, 67.98)$
 
 
-c.
+c. \
 
 ```{r}
 library(ProbBayes)
@@ -368,23 +368,22 @@ bene_post <- c(726.95, 423.98) # Beta(726.95, 423.98)
 qbeta(c(0.025, 0.975), alex_post[1], alex_post[2])
 qbeta(c(0.025, 0.975), bene_post[1], bene_post[2])
 
-p1 <- ggplot(data.frame(x = c(0, 1)), aes(x)) +
+ggplot(data.frame(x = c(0, 1)), aes(x)) +
   stat_function(fun = dbeta, args = list(8, 2), aes(color = "Alex")) +
   stat_function(fun = dbeta, args = list(34.95, 67.98), aes(color = "Benedict")) +
   labs(title = "Priors", x = "p", color = "Person")
 
-p2 <- ggplot(data.frame(x = c(0.5, 0.8)), aes(x)) +
+ggplot(data.frame(x = c(0.5, 0.8)), aes(x)) +
   stat_function(fun = dbeta, args = list(alex_post[1], alex_post[2]), aes(color = "Alex")) +
   stat_function(fun = dbeta, args = list(bene_post[1], bene_post[2]), aes(color = "Benedict")) +
   labs(title = "Posteriors", x = "p", color = "Person")
 
-grid.arrange(p1, p2)
 ```
 
-Alex 95% CI: 0.6328457, 0.6898269
-Benedict 95% CI: 0.6035532 0.6592528
+Alex 95% CI: 0.6328457, 0.6898269 \
+Benedict 95% CI: 0.6035532 0.6592528 \
 
-d.
+d. \
 
 ```{r}
 set.seed(49) 
@@ -401,9 +400,9 @@ mean(y_bene >= y_obs)
 ```
 
 
-Alex's prior is centered on 0.80, but because he has a prior effective sample size of only 10 his distribution is very wide. The observed value of 692 out of 1048 (66%) is within the range of plausible values. The probability of 0.8693 tells us that the data is consistent with his prior. 
+Alex's prior is centered on 0.80, but because he has a prior effective sample size of only 10 his distribution is very wide. The observed value of 692 out of 1048 (66%) is within the range of plausible values. The probability of 0.8693 tells us that the data is consistent with his prior.  \
 
-Benedict's prior is centered on 0.34, and because he has a larger prior effective sample size (about 103), his distribution is very narrow. The observed value of 692 out of 1048 is far from his expected range. The probability of 0 tells us that the data is completely inconsistent with his prior, such a result would be basically impossible under his initial beliefs.
+Benedict's prior is centered on 0.34, and because he has a larger prior effective sample size (about 103), his distribution is very narrow. The observed value of 692 out of 1048 is far from his expected range. The probability of 0 tells us that the data is completely inconsistent with his prior, the result would be basically impossible under his initial beliefs. \
 
 
 
