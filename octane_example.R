@@ -31,6 +31,8 @@ E87 <- exp(-n/(2*sigsq)*(ybar-87)^2)
 E90 <- exp(-n/(2*sigsq)*(ybar-90)^2)
 E93 <- exp(-n/(2*sigsq)*(ybar-93)^2)
 
+
+
 # Posterior calculations (recall the prior is uniform,
 # with 1/3 probability for each tank)
 
