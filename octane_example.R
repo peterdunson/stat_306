@@ -18,9 +18,9 @@ library(ggplot2)
 # readings and suppose the underlying variation 
 # has value sigsq.
 
-ybar <- 90
+ybar <- 88.8
 n <- 4
-sigsq <- 9
+sigsq <- 16
 
 # Now it's "All about the Bayes"!
 # (collective student groans)
