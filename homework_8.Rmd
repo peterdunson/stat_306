@@ -1,0 +1,321 @@
+---
+title: "homework_8"
+author: "Peter"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+Sec 8.9 Exercises # 2,3,5,6,7,9,10,11,12
+
+
+### Exercise 2
+
+
+```{r}
+mu_vals <- c(5, 10, 15, 20, 25, 30, 35)
+prior   <- rep(1/7, 7)
+y <- 28; sig <- 10
+
+likelihood <- dnorm(y, mean = mu_vals, sd = sig)
+posterior  <- (prior * likelihood) / sum(prior * likelihood)
+
+data.frame(mu = mu_vals, prior = prior, likelihood = likelihood, posterior = posterior)
+
+sum(posterior[mu_vals >= 30])
+```
+
+The table above displays the discrete posterior distribution of mu for the given values. The probability that the mean is at least as large as 30 degrees is 0.4254612. \ 
+
+
+### Exercise 3
+
+
+a. \
+
+```{r}
+# part a
+normal.select(list(p = 0.25, x = 14), list(p = 0.8, x = 21))
+```
+
+$\mu_0 = 17.11417$ and $\sigma_0 = 4.617076$ \
+
+b. \
+
+```{r}
+qnorm(0.10, mean = 17.11417, sd = 4.617076)
+```
+
+The 0.10 quantile under the prior from part a is 11.19715. This is inconsistent with Sam's 10.5. \
+
+```{r}
+normal.select(list(p = 0.10, x = 10.5), list(p = 0.8, x = 21))
+```
+
+We could instead use 
+
+$\mu_0 = 16.83782$ and $\sigma_0 = 4.945429$ \
+
+to stay consistent with Sam's beliefs.
+
+
+### Exercise 5
+
+```{r}
+mun <- 17.4
+sign <- 0.77
+
+# part a
+1 - pnorm(16.5, mun, sign)
+
+# part b
+pnorm(18, mun, sign) - pnorm(17, mun, sign)
+```
+
+a. \
+
+$P(\mu \geq 16.5 \mid y) = 0.8787642$
+
+There is a 0.8787642 posterior probability that Federer's mean time to serve is at least 16.5 seconds. So the statement is fairly likely. \
+
+b. \
+
+$P(17 \leq \mu \leq 18 \mid y) = 0.4803623$
+
+There is a 0.4803623 posterior probability that the mean time to serve is at least 17 and no more than 18 seconds. The statement has moderate posterior support.  \
+
+
+### Exercise 6
+
+```{r}
+mun <- 17.4
+sign <- 0.77
+
+# part a
+qnorm(c(0.01, 0.99), mun, sign)
+```
+
+a. \
+
+Credible interval for $\mu: (15.60871, 19.19129)$. \
+
+b. \
+
+Since 16.5 is inside the interval, the hypothesis that $\mu = 16.5$
+is consistent with the posterior and cannot be rejected at the 98% level. \
+
+
+### Exercise 7
+
+```{r}
+mun  <- 17.4
+sign <- 0.77
+sig  <- 10
+S    <- 1000
+
+set.seed(123)
+
+mu_sim <- rnorm(S, mean = mun, sd = sign)
+y_pred <- rnorm(S, mean = mu_sim, sd = sig)
+
+pred_sd <- sqrt(sig^2 + sign^2)
+
+x <- seq(-20, 60, length = 500)
+plot(x, dnorm(x, mun, pred_sd), type = 'l', col = "blue", lwd = 2,
+     main = "Posterior Predictive Distribution",
+     xlab = "time-to-serve", ylab = "density")
+lines(density(y_pred), col = "magenta", lwd = 2)
+legend("topleft", c("exact (8.30)", "simulated"), 
+       col = c("blue", "magenta"), lwd = 2)
+
+quantile(y_pred, c(0.05, 0.95))
+```
+
+a. \
+
+The curves look very similar. The simulated deviates slightly near the peak at about 20 seconds. This deviation is due to Monte Carlo variability from using only S=1000. \
+
+b.
+
+The 90% prediction interval for a future time-to-serve is $(0.8011003, 33.9145394)$ seconds. This means we are 90% confident that Federer's next single time-to-serve will fall in this range
+
+
+### Exercise 9
+
+a. \
+
+```{r}
+normal.select(list(p = 0.25, x = 8), list(p = 0.75, x = 12))
+```
+
+$\mu_0= 10, \sigma_0=2.965204$
+
+b. \
+
+```{r}
+# part b
+fares <- c(7.5, 8.5, 9.5, 6.5, 7.0, 6.0, 7.0, 16.0, 8.0, 8.5,
+           9.5, 13.5, 4.5, 8.5, 7.5, 13.0, 6.5, 9.5, 21.0, 6.5)
+n <- length(fares)
+ybar <- mean(fares)
+sig <- 4
+
+mu0 <- 10
+sig0 <- 2.965204
+
+prior <- c(mu0, sig0)
+data  <- c(ybar, sig / sqrt(n))
+normal_update(prior, data)
+```
+
+$\pi(\mu \mid y) \sim N(9.2896343, 0.8563181)$
+
+c. \
+
+```{r}
+# part c
+mun  <- 9.2896343
+sign <- 0.8563181
+
+qnorm(c(0.05, 0.95), mun, sign)
+```
+
+We are 90% confident that the mean taxi fare in New York City falls between $(7.881116, 10.698152)$. \
+ 
+
+
+### Exercise 10
+
+a. \
+
+```{r}
+mu0_weak  <- 10
+sig0_weak <- 100
+```
+
+Our week prior has: $\mu_0 = 10, \sigma_0 = 100$. \
+
+b. \
+
+```{r}
+fares <- c(7.5, 8.5, 9.5, 6.5, 7.0, 6.0, 7.0, 16.0, 8.0, 8.5,
+           9.5, 13.5, 4.5, 8.5, 7.5, 13.0, 6.5, 9.5, 21.0, 6.5)
+n <- length(fares)
+ybar <- mean(fares)
+sig <- 4
+
+prior_weak <- c(mu0_weak, sig0_weak)
+data       <- c(ybar, sig / sqrt(n))
+normal_update(prior_weak, data)
+```
+
+Due to our weak prior, we can see the posterior distribution is very similar to what we got in exercise 9: \
+
+$\pi(\mu \mid y) \sim N(9.2250620, 0.8943914)$
+
+
+c. \
+
+```{r}
+# part c
+mun_weak  <- 9.2250620
+sign_weak <- 0.8943914
+
+qnorm(c(0.05, 0.95), mun_weak, sign_weak)
+```
+
+The 90% interval with the weakly informative prior is $(7.753919, 10.696205)$, compared to $(7.881116, 10.698152)$ from Exercise 9. The intervals are very similar, with $n = 20$ observations the data dominate and the choice of prior doesn't have much influence on the posterior. \
+
+
+
+
+### Exercise 11
+
+a. \
+
+```{r}
+mun  <- 9.2896343
+sign <- 0.8563181
+sig  <- 4
+
+sim_fares <- function() {
+  mu_draw <- rnorm(1, mean = mun, sd = sign)
+  rnorm(20, mean = mu_draw, sd = sig)
+}
+
+sim_fares()
+```
+
+b. \
+
+```{r}
+sim_max_fare <- function() {
+  mu_draw <- rnorm(1, mean = mun, sd = sign)
+  max(rnorm(20, mean = mu_draw, sd = sig))
+}
+
+max_fares <- replicate(1000, sim_max_fare())
+```
+
+c. \
+
+```{r}
+hist(max_fares, breaks = 30, main = "Distribution of Maximum Fares",
+     xlab = "maximum fare", col = "lightblue")
+abline(v = 21, col = "red", lwd = 2)
+legend("topright", "observed max = $21", col = "red", lwd = 2)
+
+mean(max_fares >= 21)
+```
+
+The fare of $\$21$ is relatively large compared to the distribution, it falls in the right tail. About $4.2\%$ of the simulated max fares are at least $\$21$. \
+
+
+d. \
+
+About $4.2\%$ of simulated maximum fares meet or exceed $\$21$, meaning the observed maximum is somewhat uncommon under the model. This could suggest the Normal model with $\sigma = 4$ may be slightly underestimating the spread of taxi fares, and a model with heavier tails or larger variance might be more appropriate. \
+
+
+
+
+### Exercise 12
+
+a. \
+
+```{r}
+sleep <- c(9.0, 7.5, 7.0, 8.0, 5.0, 6.5, 8.5, 7.0, 9.0, 7.0, 5.5, 6.0, 8.5, 7.5)
+n    <- length(sleep)
+ybar <- mean(sleep)
+sig  <- 1.5
+mu0  <- 8
+sig0 <- 1
+
+prior <- c(mu0, sig0)
+data  <- c(ybar, sig / sqrt(n))
+normal_update(prior, data)
+```
+
+$\mu_0 = 7.3846154, \sigma_0 = 0.3721042$
+
+b. \
+
+```{r}
+mun  <- 7.3846154
+sign <- 0.3721042
+
+qnorm(c(0.05, 0.95), mun, sign)
+```
+
+The 90% credible interval for $\mu: (6.772558, 7.996672)$.
+
+c. \
+
+```{r}
+pred_sd <- sqrt(sig^2 + sign^2)
+qnorm(c(0.05, 0.95), mun, pred_sd)
+```
+
+The $90\%$ prediction interval for a future student's sleeping time is $(4.842552, 9.926679)$ hours. This is wider than the interval for $\mu$ in part b since it incorporates both uncertainty in $\mu$ and individual variability $\sigma = 1.5$.
+
+
+
+
