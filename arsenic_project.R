@@ -137,6 +137,17 @@ grid.arrange(p1, p2, p3, p4, p5, p6, nrow = 2)
 
 
 
+# 4. (60/40 prior)
+
+p1 <- posterior_plot("AAAXX", prior = c(0.6, 0.4))
+p2 <- posterior_plot("XXAAA", prior = c(0.6, 0.4))
+p3 <- posterior_plot("AAXAX", prior = c(0.6, 0.4))
+p4 <- posterior_plot("AXAAA", prior = c(0.6, 0.4))
+p5 <- posterior_plot("AAAAA", prior = c(0.6, 0.4))
+p6 <- posterior_plot("AAAAX", prior = c(0.6, 0.4))
+
+grid.arrange(p1, p2, p3, p4, p5, p6, nrow = 2)
+
 
 
 
