@@ -195,7 +195,7 @@ sigybar <- sqrt(sig0^2+sig^2/4)
 c(mu0,sigybar)
 
 simgraph_prior <- ggplot(df,aes(x=pred_ybar_sim,y=after_stat(density))) + 
-   geom_histogram(binwidth=3,color="navy", fill="cyan")
+   geom_histogram(binwidth=3,color="navy", fill="green")
 simgraph_prior <- simgraph_prior + geom_line(aes(x=pred_ybar_sim,
                                                  y=dnorm(pred_ybar_sim,120.0,25.4472)),
                                              lwd=1)
@@ -206,3 +206,4 @@ sum(pred_ybar_sim>=149)/sims
 # and exact calc
 
 1-pnorm(149,120,25.4472)
+
