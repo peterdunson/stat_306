@@ -109,7 +109,7 @@ is consistent with the posterior and cannot be rejected at the 98% level. \
 ```{r}
 mun  <- 17.4
 sign <- 0.77
-sig  <- 10
+sig  <- 4
 S    <- 1000
 
 set.seed(123)
@@ -134,9 +134,9 @@ a. \
 
 The curves look very similar. The simulated deviates slightly near the peak at about 20 seconds. This deviation is due to Monte Carlo variability from using only S=1000. \
 
-b.
+b. \
 
-The 90% prediction interval for a future time-to-serve is $(0.8011003, 33.9145394)$ seconds. This means we are 90% confident that Federer's next single time-to-serve will fall in this range
+The 90% prediction interval for a future time-to-serve is $(10.76037, 24.15775)$ seconds. This means we are 90% confident that Federer's next single time-to-serve will fall in this range. \
 
 
 ### Exercise 9
