@@ -33,6 +33,7 @@ The table above displays the discrete posterior distribution of mu for the given
 a. \
 
 ```{r}
+library(ProbBayes)
 # part a
 normal.select(list(p = 0.25, x = 14), list(p = 0.8, x = 21))
 ```
@@ -51,11 +52,11 @@ The 0.10 quantile under the prior from part a is 11.19715. This is inconsistent 
 normal.select(list(p = 0.10, x = 10.5), list(p = 0.8, x = 21))
 ```
 
-We could instead use 
+We could instead use \
 
 $\mu_0 = 16.83782$ and $\sigma_0 = 4.945429$ \
 
-to stay consistent with Sam's beliefs.
+to stay consistent with Sam's beliefs. \
 
 
 ### Exercise 5
@@ -152,7 +153,6 @@ $\mu_0= 10, \sigma_0=2.965204$
 b. \
 
 ```{r}
-# part b
 fares <- c(7.5, 8.5, 9.5, 6.5, 7.0, 6.0, 7.0, 16.0, 8.0, 8.5,
            9.5, 13.5, 4.5, 8.5, 7.5, 13.0, 6.5, 9.5, 21.0, 6.5)
 n <- length(fares)
@@ -172,7 +172,6 @@ $\pi(\mu \mid y) \sim N(9.2896343, 0.8563181)$
 c. \
 
 ```{r}
-# part c
 mun  <- 9.2896343
 sign <- 0.8563181
 
@@ -210,13 +209,12 @@ normal_update(prior_weak, data)
 
 Due to our weak prior, we can see the posterior distribution is very similar to what we got in exercise 9: \
 
-$\pi(\mu \mid y) \sim N(9.2250620, 0.8943914)$
+$\pi(\mu \mid y) \sim N(9.2250620, 0.8943914)$ \
 
 
 c. \
 
 ```{r}
-# part c
 mun_weak  <- 9.2250620
 sign_weak <- 0.8943914
 
@@ -305,7 +303,7 @@ sign <- 0.3721042
 qnorm(c(0.05, 0.95), mun, sign)
 ```
 
-The 90% credible interval for $\mu: (6.772558, 7.996672)$.
+The 90% credible interval for $\mu: (6.772558, 7.996672)$. \
 
 c. \
 
@@ -314,7 +312,7 @@ pred_sd <- sqrt(sig^2 + sign^2)
 qnorm(c(0.05, 0.95), mun, pred_sd)
 ```
 
-The $90\%$ prediction interval for a future student's sleeping time is $(4.842552, 9.926679)$ hours. This is wider than the interval for $\mu$ in part b since it incorporates both uncertainty in $\mu$ and individual variability $\sigma = 1.5$.
+The $90\%$ prediction interval for a future student's sleeping time is $(4.842552, 9.926679)$ hours. This is wider than the interval for $\mu$ in part b since it incorporates both uncertainty in $\mu$ and individual variability $\sigma = 1.5$. \
 
 
 
