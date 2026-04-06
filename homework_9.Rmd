@@ -1,0 +1,122 @@
+---
+title: "homework_9"
+author: "Peter"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+HW # 9 — due before exam time Friday Apr 10 10 am 
+Sec 8.9 Exercises #18, 19
+
+
+### Exercise 18
+
+a. \
+
+```{r}
+
+pedro_a <- 70
+pedro_b <- 10
+mia_a   <- 33.3
+mia_b  <- 3.3
+
+# Means
+pedro_mean <- pedro_a / pedro_b
+mia_mean   <- mia_a / mia_b
+
+pedro_sd <- sqrt(pedro_a / pedro_b^2)
+mia_sd   <- sqrt(mia_a / mia_b^2)
+
+pedro_mean
+pedro_sd
+mia_mean
+mia_sd
+```
+
+Mia expects more ER visits on average (10.09091 vs 7), but Pedro is more confident in his guess. His prior is much tighter (SD = 0.83666 vs 1.748671). \
+
+b. \
+
+```{r}
+qgamma(c(0.05, 0.95), shape = 70, rate = 10)
+qgamma(c(0.05, 0.95), shape = 33.3, rate = 3.3)
+```
+
+Pedro's 90% credible interval is (5.682967, 8.430648) and Mia's 90% credible interval is (7.396876, 13.128930). Mia's interval is wider than Pedro's, which makes sense because Mia's prior is less certain than Pedro's. \
+
+c. \ 
+
+Pedro would need to keep the ratio $\alpha/\beta = 7$ (same mean) but scale both parameters down to increase spread. For example, he could do $\alpha = 35, \beta = 5$: \
+
+```{r}
+qgamma(c(0.05, 0.95), shape = 35, rate = 5)
+```
+
+This keeps the mean of $7$, but his 90% CI is now (5.173928, 9.053123), which reflects his uncertainty. \
+
+d. \
+
+d. Mia can keep $\alpha = 33.3$ fixed and only adjust $\beta$ to shift the mean up by 3. New $\beta = 33.3/(10.09091 + 3) = 2.54375$: \
+
+```{r}
+beta <- 33.3/(10.09091 + 3)
+qgamma(c(0.05, 0.95), shape = 33.3, rate = beta)
+```
+
+
+This keeps the same degree of confidence, but her 90% CI is now (9.595948, 17.032126), which is wider and shifted up from her original (7.396876, 13.128930). \
+
+
+
+### Exercise 19
+
+$$\lambda \mid \text{data} \sim \text{Gamma}(\alpha + \sum{y}, \beta + n)$$
+
+a. \
+
+```{r}
+y <- c(8, 6, 6, 9, 8, 9, 7)
+alpha_post <- 70 + sum(y)
+beta_post  <- 10 + length(y)
+alpha_post/beta_post
+
+qgamma(c(0.025, 0.975), shape = alpha_post, rate = beta_post)
+```
+
+The posterior is $\text{Gamma}(123, 17)$ with mean $7.235294$. The $95\%$ credible interval for $\lambda$ is $(6.013237, 8.568716)$. So, we believe there is a 95% chance the true average number of ER visits per hour is between 6.013237 and 8.568716. \
+
+b. \
+
+```{r}
+pgamma(6, shape = alpha_post, rate = beta_post)
+```
+
+The posterior probability that $\lambda \leq 6$ is only $0.02368644$. This means there is less than a $2.4\%$ chance that the true average number of ER visits is at most 6, given the data. The administrator's claim is very unlikely to be true. \
+
+
+c. \
+
+```{r}
+set.seed(6549534)
+S <- 100000
+
+week_tot <- replicate(S, {
+  lambda_sim <- rgamma(1, shape = alpha_post, rate = beta_post)
+  sum(rpois(7, lambda_sim))
+})
+
+mean(week_tot)
+quantile(week_tot, c(0.025, 0.975))
+```
+
+Using $100000$ simulations, the predicted total number of ER visits for the next week has a mean of $50.61202$, with a $95\%$ posterior predictive interval of $(35, 68)$. \
+
+
+
+
+
+
+
+
+
+

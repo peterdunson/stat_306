@@ -57,7 +57,6 @@ posterior_mean <- alpha_n / beta_n
 # Print the result
 posterior_mean
 
-
 # we find a 90% equal tails credible 
 # interval for lambda
 
