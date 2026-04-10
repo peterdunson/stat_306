@@ -46,7 +46,7 @@ print(p0 %*% P %*% P %*% P %*% P %*% P %*% P, digits=5)
 # Let's calculate any power of the transition matrix
 #
 
-m <- 3
+m <- 48
 Pm <- diag(rep(1,3))
 for(j in 1:m){
    Pm <- Pm %*% P
@@ -59,7 +59,7 @@ print(P%*%P%*%P, digits=5)
 # of matrices calculator.
 
 library(expm)
-print(P%^%3)
+print(P%^%48)
 
 # A simulation of this Markov Chain
 
