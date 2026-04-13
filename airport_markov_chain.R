@@ -21,7 +21,7 @@ P
 # the distribution of location at time t=0 is 
 # p(0) = (1,0,0) 
 
-p0 <- c(1,0,0)
+p0 <- c(0,0.5,0.5)
 p0
 
 # Then the probability distribution of location at
@@ -46,7 +46,7 @@ print(p0 %*% P %*% P %*% P %*% P %*% P %*% P, digits=5)
 # Let's calculate any power of the transition matrix
 #
 
-m <- 48
+m <- 2
 Pm <- diag(rep(1,3))
 for(j in 1:m){
    Pm <- Pm %*% P
@@ -59,13 +59,16 @@ print(P%*%P%*%P, digits=5)
 # of matrices calculator.
 
 library(expm)
-print(P%^%48)
+print(P%^%2)
+
+p0 <- c(0, 1, 0)
+p0%*%(P%^%24)
 
 # A simulation of this Markov Chain
 
-N <- 5000
+N <- 10000
 location <- vector("numeric",N)
-location[1] <- 1
+location[1] <- 3
 for(j in 2:N){
    location[j] <- sample(1:3, size=1, 
                          prob=P[location[j-1], ])

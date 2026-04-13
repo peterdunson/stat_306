@@ -43,18 +43,36 @@ random_walk <- function(pd, start, num_steps){
 # at position 6, which is analogous
 # to your work in Exercise 1
 
-random_walk(pd,6,5)
+random_walk(pd,7,20)
 
 # Does this random_walk have a stationary
 # distribution? Explore this.
 
-yvals <- random_walk(pd,4,500000)
+yvals <- random_walk(pd,8,500000)
 
 counts <- tally(yvals)
 counts
 
+
+
 proports <- counts/length(yvals)
 proports
+
+# > proports
+# X
+# 1        2        3        4        5        6        7        8 
+# 0.063008 0.126694 0.050950 0.050646 0.249586 0.249000 0.148808 0.061308 
+
+#make histogram of proports based on proportions
+
+x <- 1:8
+proportions <- data.frame(x, proports)
+ggplot(proportions, aes(x = x, y = proports)) +
+   geom_bar(stat = "identity", fill = "magenta") +
+   labs(title = "Proportions of Visits to Each State",
+        x = "State",
+        y = "Proportion") +
+   theme_minimal()
 
 
 # Now let's put into R the Transition Matrix Q
@@ -94,3 +112,13 @@ sum(weights)
 
 problist <- weights/sum(weights)
 problist
+
+
+
+
+
+
+
+
+
+
