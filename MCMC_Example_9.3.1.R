@@ -21,6 +21,7 @@ pd <- function(x){
 pd(1)
 pd(2)
 pd(0)
+pd(9)
 
 
 # The following function will run this random
@@ -43,7 +44,7 @@ random_walk <- function(pd, start, num_steps){
 # at position 6, which is analogous
 # to your work in Exercise 1
 
-random_walk(pd,7,20)
+random_walk(pd,6,15)
 
 # Does this random_walk have a stationary
 # distribution? Explore this.
@@ -62,8 +63,6 @@ proports
 # X
 # 1        2        3        4        5        6        7        8 
 # 0.063008 0.126694 0.050950 0.050646 0.249586 0.249000 0.148808 0.061308 
-
-#make histogram of proports based on proportions
 
 x <- 1:8
 proportions <- data.frame(x, proports)
@@ -102,6 +101,9 @@ for(j in 1:500){
 
 print(Qm,digits=5)
 
+
+library(expm)
+print(Q%^%1000, digits=5)
 
 # Finally, and note that we have intentionally waited to 
 # perform this calculation --- find the probability vector
