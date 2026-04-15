@@ -83,3 +83,8 @@ N
 
 proportions <- counts/N
 proportions
+
+
+
+
+runif(1, min = 0, max = 1)
