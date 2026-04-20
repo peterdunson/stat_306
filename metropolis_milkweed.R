@@ -62,7 +62,7 @@ metropolis <- function(postproduct,current,C,iter){
    list(S=S, accept_rate=n_accept/iter)
 }
 
-simdata <- data.frame(metropolis(postproduct,130,35.0,10000))
+simdata <- data.frame(metropolis(postproduct,130,130.0,10000))
 simdata
 
 simgraph <- ggplot(simdata, aes(x=S,y=after_stat(density))) + 
@@ -74,6 +74,10 @@ simgraph <- simgraph + geom_line(aes(x=S,
 simgraph
 
 quantile(simdata$S, c(0.05,0.95))
+
+plot(simdata$S, main = "Index Plot of Mu Values", type = "l", col = "magenta")
+
+tail(simdata$accept_rate)
 
 # Recall, here are the theoretical calculations for
 # the posterior mean muN and posterior standard
