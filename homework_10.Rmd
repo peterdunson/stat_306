@@ -1,0 +1,290 @@
+---
+title: "homework_10"
+author: "Peter"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+
+Sec 9.8 #2, 3, 10, 11, 12, 13
+
+### Problem 2
+
+a.
+
+$P(X_1 = 3) = 0.6, P(X_1 = 4) = 0.2, P(X_1 = 5) = 0.2$
+
+$$\pi^{(1)} = (0, 0, 0.6, 0.2, 0.2)$$
+
+b.
+
+## Part (b)
+
+$$\pi^{(0)} = (0,0,0,1,0)$$
+
+$$\pi^{(1)} = \pi^{(0)}P = (0, \ 0, \ .6, \ .2, \ .2)$$
+
+$$\pi^{(2)} = .6 \cdot \text{row 3} + .2 \cdot \text{row 4} + .2 \cdot \text{row 5} \newline = .6(0,.2,.6,.2,0) + .2(0,0,.6,.2,.2) + .2(0,0,0,.8,.2) \newline = (0,.12,.36,.12,0) + (0,0,.12,.04,.04) + (0,0,0,.16,.04) \newline = (0, 0.12, 0.48, 0.32, 0.08)$$
+
+
+
+$$\pi^{(3)} = .12 \cdot \text{row 2} + .48 \cdot \text{row 3} + .32 \cdot \text{row 4} + .08 \cdot \text{row 5} \newline = .12(.2,.2,.6,0,0) + .48(0,.2,.6,.2,0) + .32(0,0,.6,.2,.2) + .08(0,0,0,.8,.2) \newline = (.024,.024,.072,0,0) + (0,.096,.288,.096,0) + (0,0,.192,.064,.064) + (0,0,0,.064,.016) \newline = (0.024, 0.120, 0.552, 0.224, 0.080)$$
+
+c.
+
+Irreducible means that you can get from one state to any other state eventually. For P, we see that this is possible because there are no zeros that trap you, so essentially every state has a path to all other states. \
+
+Aperiodic means that the chain doesn't get stuck in a cycle. Our diagonal in P is all positive, so we can stay in the same state with positive probability, which means we won't get stuck in a cycle. \
+
+With both of these properties, the distribution of $X_t$ converges to a unique stationary distribution $\pi$ as $t \to \infty$.
+
+
+### Problem 3
+
+a.
+
+```{r}
+P <- matrix(c(
+  .2, .8,  0,  0,  0,
+  .2, .2, .6,  0,  0,
+   0, .2, .6, .2,  0,
+   0,  0, .6, .2, .2,
+   0,  0,  0, .8, .2
+), nrow=5, byrow=TRUE)
+
+n <- 1000
+walk <- numeric(n)
+walk[1] <- 1
+
+for(t in 2:n){
+  walk[t] <- sample(1:5, size=1, prob=P[walk[t-1], ])
+}
+```
+
+b.
+
+```{r}
+freq <- table(walk) / n
+print(freq)
+```
+
+$\omega \approx (0.049, 0.162, 0.511, 0.205, 0.073)$
+
+c.
+
+```{r}
+w <- as.numeric(freq)
+w <- w / sum(w)
+print(w %*% P)
+```
+
+Computing $\omega P$ gives $(.042, .174, .527, .202, .056) \approx \omega$, confirming $\omega$ is the stationary distribution up to simulation noise. \
+
+
+### Problem 10
+
+a.
+
+$$f(y, \lambda) = f(y \mid \lambda) \cdot \pi(\lambda) = \frac{e^{-\lambda} \lambda^y}{y!} \cdot \frac{b^a}{\Gamma(a)} \lambda^{a-1} e^{-b\lambda} \newline = \frac{b^a}{\Gamma(a) \, y!} \lambda^{y+a-1} e^{-(b+1)\lambda}$$
+
+b.
+
+$Y \mid \lambda$ is Poisson$(\lambda)$ by assumption. \
+
+$$f(\lambda \mid y) \propto \lambda^{y+a-1} e^{-(b+1)\lambda}$$
+
+this is a Gamma kernel with shape $y + a$ and rate $b + 1$. So: \
+
+$$\lambda \mid Y = y \sim \text{Gamma}(a + y, \ b + 1)$$
+
+c.
+
+Here, we alternate between drawing from the conditionals $Y \mid \lambda$ and $\lambda \mid Y$ defined above.
+
+```{r}
+gibbs_poisson_gamma <- function(a, b, iter) {
+  x <- matrix(0, iter, 2)
+  lambda <- 1 # our initialization
+  for(k in 1:iter) {
+    y      <- rpois(1, lambda)
+    lambda <- rgamma(1, shape = a + y, rate = b + 1)
+    x[k, ] <- c(y, lambda)
+  }
+  x
+}
+```
+
+
+d.
+
+```{r}
+out <- gibbs_poisson_gamma(a = 3, b = 3, iter = 1000)
+
+y_samples      <- out[, 1]
+lambda_samples <- out[, 2]
+
+hist(y_samples, probability = TRUE, main = "Marginal of Y")
+hist(lambda_samples, probability = TRUE, main = "Marginal of lambda")
+```
+
+
+e.
+
+Integrating out $\lambda$ from the joint:
+
+$$f(y) = \int_0^\infty \frac{b^a}{\Gamma(a)\, y!} \lambda^{y+a-1} e^{-(b+1)\lambda} \, d\lambda = \frac{b^a}{\Gamma(a)\, y!} \cdot \frac{\Gamma(y+a)}{(b+1)^{y+a}}$$
+
+This is Negative Binomial$(a, \ \frac{b}{b+1})$. With $a=3, b=3$:
+
+$$f(y) = \frac{3^3}{\Gamma(3)\, y!} \cdot \frac{\Gamma(y+3)}{4^{y+3}}$$
+
+```{r}
+y_vals <- 0:10
+exact <- dnbinom(y_vals, size = 3, prob = 3/4)
+simulated <- table(factor(y_samples, levels = y_vals)) / 1000
+
+cbind(y = y_vals, exact = round(exact, 3), simulated = round(as.numeric(simulated), 3))
+```
+
+The simulated frequencies match the exact Negative Binomial$(3, 3/4)$ probabilities almost indentically across all values of $y$. This confirms that the Gibbs sampler is correctly sampling from the marginal distribution of $Y$.
+
+### Problem 11
+
+a.
+
+$$f(x \mid Y=1) = \begin{cases} 1/6 & x=0 \\ 3/6 & x=1 \\ 2/6 & x=2 \\ 0 & x=3 \end{cases}$$
+
+b.
+
+$$f(y \mid X=2) = \begin{cases} 0 & y=0 \\ 2/6 & y=1 \\ 3/6 & y=2 \\ 1/6 & y=3 \end{cases}$$
+
+
+c.
+
+Gibbs sampling works by alternating between sampling from the conditional distributions. At each iteration it draws $X \mid Y = y$ from the conditional given the current value of $y$, then $Y \mid X = x$ given the new $x$.
+
+d.
+
+```{r}
+joint <- matrix(c(
+  1,1,0,0,
+  1,3,2,0,
+  0,2,3,1,
+  0,0,1,1
+), nrow=4, byrow=TRUE) / 16
+
+gibbs_discrete <- function(joint, iter) {
+  out <- matrix(0, iter, 2)
+  x <- 1
+  for(k in 1:iter) {
+    y <- sample(0:3, size=1, prob=joint[x+1, ])
+    x <- sample(0:3, size=1, prob=joint[, y+1])
+    out[k, ] <- c(x, y)
+  }
+  out
+}
+
+out <- gibbs_discrete(joint, 1000)
+sim_table <- table(X=out[,1], Y=out[,2]) / 1000
+print(round(sim_table, 3))
+print(joint)
+```
+
+The simulated frequencies line up with the exact probabilities in Table 9.3. The Gibbs sampler is correctly sampling from the joint distribution of $(X, Y)$.
+
+
+### Problem 12
+
+a.
+
+```{r}
+gibbs_normal <- function(s, phi = 0.002, iter = 1000){
+  ybar <- mean(s$y)
+  n <- length(s$y)
+  mu0 <- s$mu0
+  phi0 <- s$phi0
+  a <- s$a
+  b <- s$b
+  x <- matrix(0, iter, 2)
+  for(k in 1:iter){
+   mun <- (phi0 * mu0 + n * phi * ybar) /
+      (phi0 + n * phi)
+    sigman <- sqrt(1 / (phi0 + n * phi))
+    mu <- rnorm(1, mean = mun, sd = sigman)
+    an <- n / 2 + a
+    bn <- sum((s$y - mu) ^ 2) / 2 + b
+    phi <- rgamma(1, shape = an, rate = bn)
+    x[k, ] <- c(mu, phi)
+  }
+  x
+}
+
+y <- c(47, 64, 61, 61, 63, 61, 64, 66, 63, 67,
+       63.5, 65, 62, 64, 61, 56, 63, 65, 64, 59)
+
+s <- list(y=y, mu0=62, phi0=1, a=1, b=1)
+
+out <- gibbs_normal(s, iter=5000)
+mu_samples  <- out[, 1]
+phi_samples <- out[, 2]
+
+```
+
+
+b.
+
+```{r}
+sigma_samples <- 1/sqrt(phi_samples)
+quantile(sigma_samples, c(0.05, 0.95))
+```
+
+The $90\%$ posterior interval for $\sigma$ is $(3.251625, 5.407529)$, so there is 90% posterior probability that the true standard deviation of heights lies between $3.251625$ and $5.407529$ inches.
+
+c.
+
+```{r}
+P90_samps <- mu_samples + 1.6445 * sigma_samples
+plot(density(P90_samps), main="Posterior of P90")
+```
+
+The posterior of $P_{90}$ is centered around $68.5$ inches with a slight right skew. The distribution suggests the 90th percentile of women's heights is most likely between 67 and 71 inches. \
+
+
+### Problem 13
+
+```{r}
+library(runjags)
+
+model_string <- "
+model {
+  for(i in 1:N) {
+    y[i] ~ dnorm(mu, phi)
+  }
+  mu   ~ dnorm(62, 1)
+  phi  ~ dgamma(1, 1)
+  sigma <- 1/sqrt(phi)
+  P90  <- mu + 1.6445*sigma
+}
+"
+
+y <- c(47, 64, 61, 61, 63, 61, 64, 66, 63, 67,
+       63.5, 65, 62, 64, 61, 56, 63, 65, 64, 59)
+
+data_list <- list(y=y, N=length(y))
+
+fit <- run.jags(model_string,
+                data    = data_list,
+                monitor = c("mu", "sigma", "P90"),
+                n.chains = 1,
+                sample  = 5000)
+
+out <- as.data.frame(fit$mcmc[[1]])
+
+quantile(out$sigma, c(0.05, 0.95))
+
+plot(density(out$P90), main="Posterior of P90 (JAGS)")
+```
+
+The JAGS results are very similar to Exercise 12. The 90% interval for $\sigma$ is $(3.280839, 5.416941)$ vs $(3.251625, 5.407529)$ from Gibbs, and the posterior density of $P_{90}$ is pretty much identical in shape and location. Both approaches are sampling from the same posterior.
+
+

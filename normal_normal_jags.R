@@ -242,3 +242,4 @@ sim_sigma_graph
 posterior
 
 summary(posterior$mcmc[[1]])
+
