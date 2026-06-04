@@ -103,6 +103,7 @@ sigma <- sqrt(pow(phi, -1))
 y <- dataone$jawwidth
 x <- dataone$length
 N <- length(y)
+x_centered <- x - mean(x)
 the_data <- list("y"=y, "x"=x, "N"=N,
                  "mu0"=0, "phi0"=0.001,
                  "mu1"=0, "phi1"=0.001,
@@ -145,12 +146,6 @@ print(posterior,digits=4)
 
 summary(posterior$mcmc[[1]])
 
-# ... again for comparison, the
-# classic least squares 95% 
-# confidence intervals
-
-confint(model1,level=0.95)
-
 # this generates the matrix of
 # the simulated posterior
 # beta0, beta1, sigma values
@@ -159,7 +154,7 @@ post <- as.mcmc(posterior)
 
 # take a look
 
-post
+head(post)
 
 # scatterplot of the joint values
 # of (beta1,beta0)
@@ -370,6 +365,9 @@ abline(h=17.546,col="green")
 # jaw width for a "new" 17 ft long shark
 
 abline(h=14.25,col="red")
+
+
 abline(h=19.88,col="red")
 
 detach(mydata)
+
